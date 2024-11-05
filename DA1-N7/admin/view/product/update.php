@@ -116,9 +116,17 @@
 
         <!-- Khu vực nhập ảnh -->
         <div>
+
             <span>Đường Dẫn Ảnh:</span>
-            <input type="text" name="image_src" value="<?= $product->image_src ?>">
+            <input type="text" name="image" value="<?= $product->image_src ?>">
+
+            <div>
+                <span>Chọn ảnh</span>
+                <input type="file" name="file_upload">
+            </div>
         </div>
+        </div>
+        
 
         <!-- Khu vực nhập ngày tạo -->
         <div>
