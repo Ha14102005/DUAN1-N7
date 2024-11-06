@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Chỉnh sửa Sản Phẩm</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -89,49 +89,46 @@
     <h3>Trang Chỉnh sửa Sản Phẩm</h3>
 
     <!-- 2. Form nhập liệu -->
-    <form action="" method="POST">
+    <form action="" method="POST" enctype="multipart/form-data">
         <!-- Khu vực nhập tên -->
         <div>
             <span>Nhập Tên:</span>
-            <input type="text" name="name" value="<?= $product->name ?>">
+            <input type="text" name="name" value="<?= htmlspecialchars($product->name) ?>">
         </div>
 
         <!-- Khu vực nhập mô tả chi tiết -->
         <div>
             <span>Nhập Mô tả chi tiết sản phẩm:</span>
-            <input type="text" name="description" value="<?= $product->description ?>">
+            <input type="text" name="description" value="<?= htmlspecialchars($product->description) ?>">
         </div>
 
         <!-- Khu vực nhập giá -->
         <div>
             <span>Nhập Giá:</span>
-            <input type="number" name="price" value="<?= $product->price ?>">
+            <input type="number" name="price" value="<?= htmlspecialchars($product->price) ?>">
         </div>
 
         <!-- Khu vực nhập số lượng còn -->
         <div>
             <span>Nhập Số lượng còn:</span>
-            <input type="number" name="stock" value="<?= $product->stock ?>">
+            <input type="number" name="stock" value="<?= htmlspecialchars($product->stock) ?>">
         </div>
 
         <!-- Khu vực nhập ảnh -->
         <div>
-
             <span>Đường Dẫn Ảnh:</span>
-            <input type="text" name="image" value="<?= $product->image_src ?>">
+            <input type="text" name="image_src" value="<?= htmlspecialchars($product->image_src) ?>">
 
             <div>
                 <span>Chọn ảnh</span>
                 <input type="file" name="file_upload">
             </div>
         </div>
-        </div>
-        
 
         <!-- Khu vực nhập ngày tạo -->
         <div>
             <span>Nhập Ngày Tạo:</span>
-            <input type="date" name="created_date" value="<?= $product->created_date ?>">
+            <input type="date" name="created_date" value="<?= htmlspecialchars($product->created_date) ?>">
         </div>
 
         <!-- Khu vực button submit và điều hướng -->
@@ -141,12 +138,17 @@
         </div>
 
         <!-- Khu vực thông báo lỗi và thành công -->
-        <div class="error">
-            <?= $thongBaoLoi ?>
-        </div>
-        <div class="success">
-            <?= $thongBaoThanhCong ?>
-        </div>
+        <?php if (!empty($thongBaoLoi)) : ?>
+            <div class="error">
+                <?= htmlspecialchars($thongBaoLoi) ?>
+            </div>
+        <?php endif; ?>
+        
+        <?php if (!empty($thongBaoThanhCong)) : ?>
+            <div class="success">
+                <?= htmlspecialchars($thongBaoThanhCong) ?>
+            </div>
+        <?php endif; ?>
     </form>
 </body>
 </html>

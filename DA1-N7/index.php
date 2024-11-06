@@ -41,7 +41,7 @@
             </form>
             <div class="account-button">
                 <img src="slide/icon.png" alt="Account" width="20px">
-                <span><a href="cart.php">Giỏ hàng</a></span>
+                <span><a href="">Giỏ hàng</a></span>
             </div>
         </div>
         <div class="row mb banner">
@@ -69,12 +69,20 @@
                         while ($product = $products->fetch_assoc()) {
                     ?>
                             <div class="product-item">
-                                <img src="upload/<?php echo $product['image_src']; ?>" alt="<?php echo $product['name']; ?>" width="150px">
+                                <img src="../upload/<?php echo $product['image_src']; ?>" alt="<?php echo $product['name']; ?>" width="150px">
                                 <h4><?php echo $product['name']; ?></h4>
                                 <p>Giá: <?php echo number_format($product['price'], 0, ',', '.'); ?> VNĐ</p>
                                 <p>Còn lại: <?php echo $product['stock']; ?> sản phẩm</p>
-                                <button>Thêm vào giỏ hàng</button>
-                                <button>Mua ngay</button>
+                                <div>
+                                    <form action="cart.php" method="post" style="display:inline-block;">
+                                        <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                                        <button type="submit" name="add_to_cart">Thêm vào giỏ hàng</button>
+                                    </form>
+                                    <form action="checkout.php" method="post" style="display:inline-block;">
+                                        <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                                        <button type="submit" name="buy_now">Mua ngay</button>
+                                    </form>
+                                </div>
                             </div>
                     <?php
                         }
@@ -86,7 +94,6 @@
             </div>
 
             <div class="boxright">
-                <!-- Bảng Tài Khoản -->
                 <div class="box">
                     <div class="boxtitle">Tài Khoản</div>
                     <div class="boxcontent formtaikhoan">
@@ -107,11 +114,10 @@
                             </div>
                         </form>
                         <li><a href="#">Quên mật khẩu</a></li>
-                        <li><a href="register.php">Đăng kí thành viên</a></li>
+                        <li><a href="#">Đăng kí thành viên</a></li>
                     </div>
                 </div>
 
-                <!-- Bảng Top sản phẩm hot -->
                 <div class="box">
                     <div class="boxtitle">Top sản phẩm hot</div>
                     <div class="boxcontent">
@@ -120,7 +126,7 @@
                             while ($top_product = $top_products->fetch_assoc()) {
                         ?>
                                 <div class="top-product">
-                                    <img src="images/<?php echo $top_product['image_src']; ?>" alt="<?php echo $top_product['name']; ?>" width="50px">
+                                    <img src="upload/<?php echo $top_product['image_src']; ?>" alt="<?php echo $top_product['name']; ?>" width="50px">
                                     <h4><?php echo $top_product['name']; ?></h4>
                                 </div>
                         <?php
@@ -135,7 +141,6 @@
         </div>
 
         <div class="footer">
-            <!-- Nội dung footer -->
         </div>
     </div>
 
