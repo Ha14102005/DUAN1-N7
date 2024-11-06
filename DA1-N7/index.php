@@ -15,19 +15,15 @@
     $password = "";
     $dbname = "duan1";
 
-    // Tạo kết nối
     $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Kiểm tra kết nối
     if ($conn->connect_error) {
         die("Kết nối thất bại: " . $conn->connect_error);
     }
 
-    // Truy vấn để lấy danh sách sản phẩm
     $sql = "SELECT * FROM product";
     $products = $conn->query($sql);
 
-    // Truy vấn để lấy top 5 sản phẩm hot
     $top_sql = "SELECT * FROM product ORDER BY created_date DESC LIMIT 5";
     $top_products = $conn->query($top_sql);
     ?>
@@ -63,13 +59,13 @@
         <div class="row mb">
             <div class="boxleft mr">
                 <div class="row mb search-results">
-                    <!-- Danh sách sản phẩm -->
                     <?php
                     if ($products->num_rows > 0) {
                         while ($product = $products->fetch_assoc()) {
+                            
                     ?>
                             <div class="product-item">
-                                <img src="../upload/<?php echo $product['image_src']; ?>" alt="<?php echo $product['name']; ?>" width="150px">
+                                <img src="<?php echo $product['image_src']; ?>" alt="<?php echo $product['name']; ?>" width="150px">
                                 <h4><?php echo $product['name']; ?></h4>
                                 <p>Giá: <?php echo number_format($product['price'], 0, ',', '.'); ?> VNĐ</p>
                                 <p>Còn lại: <?php echo $product['stock']; ?> sản phẩm</p>
@@ -126,7 +122,7 @@
                             while ($top_product = $top_products->fetch_assoc()) {
                         ?>
                                 <div class="top-product">
-                                    <img src="upload/<?php echo $top_product['image_src']; ?>" alt="<?php echo $top_product['name']; ?>" width="50px">
+                                    <img src="<?php echo $top_product['image_src']; ?>" alt="<?php echo $top_product['name']; ?>" width="50px">
                                     <h4><?php echo $top_product['name']; ?></h4>
                                 </div>
                         <?php
