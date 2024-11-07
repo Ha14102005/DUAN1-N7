@@ -34,6 +34,7 @@
             <form action="" method="get">
                 <input type="text" name="query" required placeholder="Nhập máy tính, phụ kiện... cần tìm">
                 <button type="submit">Tìm kiếm</button>
+              
             </form>
             <?php
 
@@ -46,10 +47,16 @@
                 $products = $conn->query($sql);
             }
             ?>
+            <div class="account-user">
+                <button>Đăng nhập</button>
+                <button>Đăng kí</button>
+            </div>
+
             <div class="account-button">
                 <img src="slide/icon.png" alt="Account" width="20px">
                 <span><a href="">Giỏ hàng</a></span>
             </div>
+
         </div>
         <div class="row mb banner">
             <img src="slide/silde1.jpg" alt="Slide 1" class="active">
