@@ -100,53 +100,6 @@
                 </div>
             </div>
 
-            <div class="boxright">
-                <div class="box">
-                    <div class="boxtitle">Tài Khoản</div>
-                    <div class="boxcontent formtaikhoan">
-                        <form action="login.php" method="post">
-                            <div class="row mb10">
-                                Tên Đăng nhập
-                                <input type="text" name="user" required>
-                            </div>
-                            <div class="row mb10">
-                                Mật Khẩu<br>
-                                <input type="password" name="pass" required>
-                            </div>
-                            <div class="row mb10">
-                                <input type="checkbox"> Ghi nhớ tài khoản?
-                            </div>
-                            <div class="row mb10">
-                                <input type="submit" value="Đăng nhập">
-                            </div>
-                        </form>
-                        <li><a href="#">Quên mật khẩu</a></li>
-                        <li><a href="#">Đăng kí thành viên</a></li>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <div class="boxtitle">Top sản phẩm hot</div>
-                    <div class="boxcontent">
-                        <?php
-                        if ($top_products->num_rows > 0) {
-                            while ($top_product = $top_products->fetch_assoc()) {
-                        ?>
-                                <div class="top-product">
-                                    <img src="<?php echo $top_product['image_src']; ?>" alt="<?php echo $top_product['name']; ?>" width="50px">
-                                    <h4><?php echo $top_product['name']; ?></h4>
-                                </div>
-                        <?php
-                            }
-                        } else {
-                            echo "<p>Không có sản phẩm hot nào.</p>";
-                        }
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="footer">
         <footer>
     <div class="container">
