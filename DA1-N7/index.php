@@ -34,7 +34,7 @@
             <form action="" method="get">
                 <input type="text" name="query" required placeholder="Nhập máy tính, phụ kiện... cần tìm">
                 <button type="submit">Tìm kiếm</button>
-              
+
             </form>
             <?php
 
@@ -48,8 +48,8 @@
             }
             ?>
             <div class="account-user">
-                <button>Đăng nhập</button>
-                <button>Đăng kí</button>
+                <a href="#" class="button"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+                <a href="#" class="button"><i class="fas fa-user-plus"></i> Đăng ký</a>
             </div>
 
             <div class="account-button">
@@ -83,10 +83,11 @@
 
                     ?>
                             <div class="product-item">
-                                <img src="<?php echo $product['image_src']; ?>" alt="<?php echo $product['name']; ?>" width="150px">
-                                <h4><?php echo $product['name']; ?></h4>
-                                <p>Giá: <?php echo number_format($product['price'], 0, ',', '.'); ?> VNĐ</p>
-                                <p>Còn lại: <?php echo $product['stock']; ?> sản phẩm</p>
+                                <a href="index2.php?id=<?php echo $product['id']; ?>">
+                                    <img src="<?php echo $product['image_src']; ?>" alt="<?php echo $product['name']; ?>" width="150px">
+                                    <h4><?php echo $product['name']; ?></h4>
+                                </a>
+                                <p> <?php echo number_format($product['price'], 0, ',', '.'); ?> VNĐ</p>
                                 <div>
                                     <form action="cart.php" method="post" style="display:inline-block;">
                                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
@@ -107,96 +108,95 @@
                 </div>
             </div>
 
-        <div class="footer">
-        <footer>
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <h3>Thông tin công ty</h3>
-                <p>LaptopStore.vn</p>
-                <p>CÔNG TY CỔ PHẦN  VIỆT NAM</p>
-                <p> Quận Long Biên, Thành phố Hà Nội, Việt Nam</p>
-                <p>SĐT: 024.9999.9999</p>
-                <p>Website: laptop88.vn</p>
-                <p>Sở KHĐT TP. Hà Nội cấp</p>
-            </div>
-            <div class="col">
-                <h3>Về LaptopStore.vn</h3>
-                <ul>
-                    <li>Giới thiệu chung</li>
-                    <li>Tuyển dụng</li>
-                    <li>Liên hệ</li>
-                </ul>
-            </div>
-            <div class="col">
-                <h3>Chính sách</h3>
-                <ul>
-                    <li>Chính sách mua hàng từ xa - kiểm hàng</li>
-                    <li>Chính sách đặt cọc sản phẩm</li>
-                    <li>Chính sách giao nhận - đổi trả</li>
-                    <li>Hướng dẫn thanh toán trực tuyến</li>
-                    <li>Chính sách bảo hành</li>
-                    <li>Chính sách bảo mật thông tin</li>
-                    <li>Quy trình tiếp nhận và giải quyết khiếu nại</li>
-                    <li>Thỏa thuận sử dụng và quy định giao dịch chung</li>
-                </ul>
-            </div>
-            <div class="col">
-                <h3>Thanh toán</h3>
-                <ul>
-                    <li>Thanh toán trực tuyến (Internet Banking)</li>
-                    <li>Thanh toán khi nhận hàng (COD)</li>
-                    <li>Hướng dẫn thanh toán VNPay</li>
-                </ul>
-                <img src="" alt="Phương thức thanh toán">
+            <div class="footer">
+                <footer>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <h3>Thông tin công ty</h3>
+                                <p>LaptopStore.vn</p>
+                                <p>CÔNG TY CỔ PHẦN VIỆT NAM</p>
+                                <p> Quận Long Biên, Thành phố Hà Nội, Việt Nam</p>
+                                <p>SĐT: 024.9999.9999</p>
+                                <p>Website: laptop88.vn</p>
+                                <p>Sở KHĐT TP. Hà Nội cấp</p>
+                            </div>
+                            <div class="col">
+                                <h3>Về LaptopStore.vn</h3>
+                                <ul>
+                                    <li>Giới thiệu chung</li>
+                                    <li>Tuyển dụng</li>
+                                    <li>Liên hệ</li>
+                                </ul>
+                            </div>
+                            <div class="col">
+                                <h3>Chính sách</h3>
+                                <ul>
+                                    <li>Chính sách mua hàng từ xa - kiểm hàng</li>
+                                    <li>Chính sách đặt cọc sản phẩm</li>
+                                    <li>Chính sách giao nhận - đổi trả</li>
+                                    <li>Hướng dẫn thanh toán trực tuyến</li>
+                                    <li>Chính sách bảo hành</li>
+                                    <li>Chính sách bảo mật thông tin</li>
+                                    <li>Quy trình tiếp nhận và giải quyết khiếu nại</li>
+                                    <li>Thỏa thuận sử dụng và quy định giao dịch chung</li>
+                                </ul>
+                            </div>
+                            <div class="col">
+                                <h3>Thanh toán</h3>
+                                <ul>
+                                    <li>Thanh toán trực tuyến (Internet Banking)</li>
+                                    <li>Thanh toán khi nhận hàng (COD)</li>
+                                    <li>Hướng dẫn thanh toán VNPay</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social">
+                        <a href="#" class="fab fa-facebook-f"></a>
+                        <a href="#" class="fab fa-google-plus-g"></a>
+                    </div>
+                </footer>
             </div>
         </div>
-    </div>
-    <div class="social">
-        <a href="#" class="fab fa-facebook-f"></a>
-        <a href="#" class="fab fa-google-plus-g"></a>
-    </div>
-</footer>
-        </div>
-    </div>
 
-    <?php
+        <?php
 
-    $conn->close();
-    ?>
-    <script>
-        let slideIndex = 0;
+        $conn->close();
+        ?>
+        <script>
+            let slideIndex = 0;
 
-        function showSlides(n) {
-            let slides = document.querySelectorAll(".banner img");
-            if (n === undefined) {
-                slideIndex++;
-            } else {
-                slideIndex = n;
+            function showSlides(n) {
+                let slides = document.querySelectorAll(".banner img");
+                if (n === undefined) {
+                    slideIndex++;
+                } else {
+                    slideIndex = n;
+                }
+
+                if (slideIndex >= slides.length) {
+                    slideIndex = 0;
+                }
+
+                if (slideIndex < 0) {
+                    slideIndex = slides.length - 1;
+                }
+
+                for (let i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+
+                slides[slideIndex].style.display = "block";
+                setTimeout(showSlides, 3000);
             }
 
-            if (slideIndex >= slides.length) {
-                slideIndex = 0;
+            function plusSlides(n) {
+                showSlides(slideIndex + n);
             }
 
-            if (slideIndex < 0) {
-                slideIndex = slides.length - 1;
-            }
-
-            for (let i = 0; i < slides.length; i++) {
-                slides[i].style.display = "none";
-            }
-
-            slides[slideIndex].style.display = "block";
-            setTimeout(showSlides, 3000);
-        }
-
-        function plusSlides(n) {
-            showSlides(slideIndex + n);
-        }
-
-        showSlides();
-    </script>
+            showSlides();
+        </script>
 </body>
 
 </html>
