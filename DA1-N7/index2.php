@@ -68,7 +68,7 @@
 
             <div class="account-button">
                 <img src="slide/icon.png" alt="Account" width="20px">
-                <span><a href="">Giỏ hàng</a></span>
+                <span><a href="client/view/cart/view.php">Giỏ hàng</a></span>
             </div>
 
         </div>

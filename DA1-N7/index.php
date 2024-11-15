@@ -48,13 +48,14 @@
             }
             ?>
             <div class="account-user">
-                <a href="#" class="button"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
-                <a href="#" class="button"><i class="fas fa-user-plus"></i> Đăng ký</a>
+                <a href="client/login.php" class="button"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+                <a href="client/register.php" class="button"><i class="fas fa-user-plus"></i> Đăng ký</a>
             </div>
 
             <div class="account-button">
                 <img src="slide/icon.png" alt="Account" width="20px">
-                <span><a href="">Giỏ hàng</a></span>
+                <span><a href="client/cart.php">Giỏ hàng</a></span>
+
             </div>
 
         </div>
@@ -84,12 +85,12 @@
                     ?>
                             <div class="product-item">
                                 <a href="index2.php?id=<?php echo $product['id']; ?>">
-                                    <img src="<?php echo $product['image_src']; ?>" alt="<?php echo $product['name']; ?>" width="150px">
+                                <img src="<?php echo $product['image_src']; ?>" alt="<?php echo $product['name']; ?>" width="150px">
                                     <h4><?php echo $product['name']; ?></h4>
                                 </a>
                                 <p> <?php echo number_format($product['price'], 0, ',', '.'); ?> VNĐ</p>
                                 <div>
-                                    <form action="cart.php" method="post" style="display:inline-block;">
+                                    <form action="client/cart.php" method="post" style="display:inline-block;">
                                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                                         <button type="submit" name="add_to_cart">Thêm vào giỏ hàng</button>
                                     </form>
