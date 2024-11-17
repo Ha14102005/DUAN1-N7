@@ -1,0 +1,324 @@
+* {
+    box-sizing: border-box;
+    font-family: sans-serif;
+    font-size: 1vw;
+    max-width: 100%;
+}
+
+.boxcenter {
+    width: 90%;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+}
+
+.mb {
+    margin-bottom: 20px;
+}
+
+.mr {
+    margin-right: 2%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #e4002b;
+    padding: 10px;
+    border: 1px darkgreen solid;
+    color: blue;
+    border-radius: 5px;
+}
+
+.header img {
+    margin-right: 20px;
+}
+
+.header form {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    margin-left: 50px;
+}
+
+.header input[type="text"] {
+    width: 50%;
+    height: 50px;
+    padding: 10px;
+    border-radius: 20px 0 0 20px;
+    border: none;
+    outline: none;
+}
+
+.header button {
+    padding: 10px 20px;
+    height: 50px;
+    background-color: #fff;
+    border: none;
+    border-radius: 0 20px 20px 0;
+    cursor: pointer;
+}
+
+.header button:hover {
+    background-color: #13ce4b;
+}
+
+.header .account-button {
+    display: flex;
+    align-items: center;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.header .account-button img {
+    margin-right: 10px;
+}
+
+.header .account-button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.header .account-button:hover {
+    background-color: #333;
+}
+
+nav {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 20px;
+    background-color: #e4002b;
+    width: 100%;
+}
+
+nav li {
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+nav li a {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    list-style: none;
+    text-decoration: none;
+    margin: 30px 30px;
+    color: #000;
+}
+
+.banner {
+    position: relative;
+    max-width: 100%;
+    margin: auto;
+    overflow: hidden;
+    min-height: 300px;
+}
+
+.banner img {
+    width: 100%;
+    display: none;
+}
+
+.banner img.active {
+    display: block;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Bố cục hàng sản phẩm */
+.search-results {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: space-between;
+}
+
+.product-item {
+    border: 1px solid #ddd;
+    padding: 15px;
+    text-align: center;
+    width: calc(33.333% - 10px); /* Để chia đều mỗi sản phẩm trên một hàng */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.product-item:hover {
+    transform: scale(1.05);
+}
+
+.product-item img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.product-item h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    margin: 10px 0;
+}
+
+.product-item p {
+    margin: 5px 0;
+}
+
+/* Định dạng cho nút */
+.product-item form {
+    display: inline-block;
+}
+
+.product-item form button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.product-item form button[name="add_to_cart"] {
+    background-color: #28a745; /* Màu xanh cho nút Thêm vào giỏ hàng */
+}
+
+.product-item form button[name="add_to_cart"]:hover {
+    background-color: #218838;
+}
+
+.product-item form button[name="buy_now"] {
+    background-color: #dc3545; /* Màu đỏ cho nút Mua ngay */
+}
+
+.product-item form button[name="buy_now"]:hover {
+    background-color: #c82333;
+}
+
+.boxcenter {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.boxleft,
+.boxright {
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.boxleft {
+    flex: 2;
+}
+
+.boxright {
+    flex: 1;
+}
+
+.box {
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.boxtitle {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.account-user {
+    display: flex;
+    flex-direction: column; 
+    gap: 5px;
+    border-radius: 20px;
+}
+
+.account-user button {
+    display: flex;
+    align-items: center;
+    background-color: #0e1eac;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+
+
+footer {
+    background-color: #f2f2f2;
+    padding: 50px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col {
+    flex: 1;
+    padding: 0 20px;
+}
+
+.social {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.social a {
+    font-size: 24px;
+    margin: 0 10px;
+    color: #333;
+}
