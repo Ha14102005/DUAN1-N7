@@ -1,3 +1,4 @@
+
 <?php
 
 //Khai báo hằng số biến môi trường cần thiết

@@ -72,6 +72,7 @@
             <li><a href="index.php">Trang chủ</a></li>
             <li><a href="">Laptop gaming</a></li>
             <li><a href="">Laptop văn phòng</a></li>
+            <li><a href="">Laptop đồ hoạ-kỹ thuật</a></li>
             <li><a href="">Phụ kiện</a></li>
             <li><a href="#">Tuyển dụng</a></li>
         </nav>
