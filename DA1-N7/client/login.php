@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['email'] = $email;
             $_SESSION['role'] = $role;
             echo "<div class='alert alert-success'>Đăng nhập thành công!</div>";
-            header("Location:cart.php");
+             header("Location:/DUAN1/DA1-N7");
             exit;
         } else {
             echo "<div class='alert alert-danger'>Mật khẩu không đúng!</div>";

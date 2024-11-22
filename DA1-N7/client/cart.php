@@ -73,7 +73,7 @@ if (isset($_POST['add_to_cart'])) {
 // Xử lý tăng/giảm số lượng sản phẩm
 if (isset($_POST['update_quantity'])) {
     $cart_item_id = $_POST['cart_item_id'];
-    $action = $_POST['action'] ?? ''; 
+    $action = $_POST['action'] ?? '';
 
     // Kiểm tra biến action trước khi thực hiện
     if ($action === 'increase') {
@@ -119,7 +119,158 @@ $cart_items = $stmt->get_result();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ Hàng</title>
-    <link rel="stylesheet" href="style_cart.css">
+<style>
+/* General body and layout styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.boxcenter {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2em;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table thead {
+    background-color: #007BFF;
+    color: white;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+table td img {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+}
+
+table td input[type="text"] {
+    width: 40px;
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+table td .quantity-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+table td .quantity-control button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    margin: 0 5px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+table td .quantity-control button:hover {
+    background-color: #0056b3;
+}
+
+table td button[type="submit"] {
+    background-color: #e74c3c;
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+table td button[type="submit"]:hover {
+    background-color: #c0392b;
+}
+
+/* Footer and Total Row */
+tr:last-child {
+    font-weight: bold;
+}
+
+tr:last-child td {
+    background-color: #f2f2f2;
+    text-align: right;
+}
+
+/* Action button for Checkout */
+.button {
+    display: inline-block;
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.button:hover {
+    background-color: #218838;
+}
+
+/* Empty cart message */
+p {
+    text-align: center;
+    font-size: 1.2em;
+    color: #888;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .boxcenter {
+        width: 95%;
+        padding: 15px;
+    }
+
+    table td input[type="text"] {
+        width: 30px;
+    }
+
+    .button {
+        width: 100%;
+    }
+
+    table th, table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+</style>
 </head>
 
 <body>
@@ -147,7 +298,7 @@ $cart_items = $stmt->get_result();
                         $total += $subtotal;
                     ?>
                         <tr>
-                            <td><img src="<?php echo $product['image_src']; ?>" alt="" width="100px"></td>
+                            <td><img src="<?php echo $product['image_src']; ?>" alt="" class="main-image"></td>
                             <td><?php echo $cart_item['name']; ?></td>
                             <td><?php echo number_format($cart_item['price'], 0, ',', '.'); ?> VNĐ</td>
                             <td>
@@ -172,7 +323,7 @@ $cart_items = $stmt->get_result();
                                     <button type="submit" name="delete_item" class="button" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này không?');">Xóa</button>
                                 </form>
                             </td>
-                            
+
                         </tr>
                     <?php } ?>
                     <tr>
