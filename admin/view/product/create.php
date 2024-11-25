@@ -84,14 +84,22 @@ form a:hover {
     </style>
 </head> -->
 
+<!-- header -->
 <?php include(__DIR__ . '/../layout/header.php'); ?>
-<!-- navbar -->
-<?php include(__DIR__ . '/../layout/navbar.php'); ?>
-<!-- sidebar -->
-<?php include(__DIR__ . '/../layout/sidebar.php'); ?>
+
+
 
 <body class="hold-transition sidebar-mini">
 
+  <div class="wrapper">
+    <!-- Content Wrapper. Contains page content -->
+    <!-- navbar -->
+    <?php include(__DIR__ . '/../layout/navbar.php'); ?>
+    
+    <!-- sidebar -->
+    <?php include(__DIR__ . '/../layout/sidebar.php'); ?>
+
+    <!-- content -->
 
 
 
@@ -162,7 +170,7 @@ form a:hover {
 
 
 
-    <div class="wrapper">
+    
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -187,77 +195,69 @@ form a:hover {
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
-                            <div class="card">
+                            <div class="card card-primary">
                                 <div class="card-header">
-                                    <a href="<?= BASE_URL_ADMIN . '?act=add-product' ?>">
-                                        <button class='btn btn-success'>Thêm sản phẩm</button>
-                                    </a>
+                                    <h3 class="card-title">Quick Example</h3>
                                 </div>
                                 <!-- /.card-header -->
-                                <div class="card-body">
-                                    <!-- 2. Form nhập liệu -->
-                                    <form action="" method="POST" enctype="multipart/form-data">
-                                        <!-- Khu vực nhập tên -->
-                                        <div style="margin-bottom: 16px;">
-                                            <span>Nhập Tên:</span>
-                                            <input type="text" name="name" value="<?= $product->name ?>">
+                                <!-- form start -->
+                                <form>
+                                    <div class="card-body">
+                                        <!-- Tên -->
+                                        <div class="form-group">
+                                            <label for="name">Tên sản phẩm</label>
+                                            <input type="text" class="form-control" name="name" id="name" value="<?= $product->name ?>">
                                         </div>
-
-                                        <!-- Khu vực nhập thông tin chi tiết sản phẩm -->
-                                        <div style="margin-bottom: 16px;">
-                                            <span>Nhập Thông tin chi tiết sản phẩm:</span>
-                                            <input type="text" name="description" value="<?= $product->description ?>">
+                                        <!-- Chi tiết -->
+                                        <div class="form-group">
+                                            <label for="description">Thông tin chi tiết sản phẩm</label>
+                                            <input type="text" class="form-control" name="description" id="description" value="<?= $product->description ?>">
                                         </div>
-
-
                                         <!-- Khu vực nhập giá -->
-                                        <div style="margin-bottom: 16px;">
-                                            <span>Nhập Giá:</span>
-                                            <input type="number" name="price" value="<?= $product->price ?>">
+                                        <div class="form-group">
+                                            <label for="price">Giá sản phẩm</label>
+                                            <input type="number" class="form-control" name="price" id="price" value="<?= $product->price ?>">
                                         </div>
-
                                         <!-- Khu vực nhập số lượng sản phẩm còn trong kho -->
-                                        <div style="margin-bottom: 16px;">
-                                            <span>Nhập số lượng sản phẩm còn trong kho:</span>
-                                            <input type="number" name="stock" value="<?= $product->stock ?>">
+                                        <div class="form-group">
+                                            <label for="stock">Số lượng tồn kho</label>
+                                            <input type="number" class="form-control" name="stock" id="stock" value="<?= $product->stock ?>">
                                         </div>
 
                                         <!-- Khu vực nhập ảnh -->
-                                        <div style="margin-bottom: 16px;">
-                                            <span>Đường Dẫn Ảnh:</span>
+                                        <div class="form-group">
+                                            <span>Đường dẫn ảnh</span>
                                             <input type="text" name="image" value="<?= $product->image_src ?>">
 
-                                            <div>
-                                                <span>Chọn ảnh</span>
-                                                <input type="file" name="file_upload">
+                                            <div class="form-control">
+                                                <input type="file" class="" name="file_upload">
                                             </div>
                                         </div>
-
                                         <!-- Khu vực nhập ngày tạo -->
-                                        <div style="margin-bottom: 16px;">
+                                        <div class="form-control">
                                             <span>Nhập Ngày Nhập:</span>
                                             <input type="date" name="created_date" value="<?= $product->created_date ?>">
                                         </div>
 
-                                        <!-- Khu vực button submit và điều hướng -->
-                                        <div style="margin-bottom: 16px;">
-                                            <a href="<?= BASE_URL_ADMIN . '?act=list-product' ?>">Quay Lại</a>
-                                            <button type="submit" name="submitForm">Tạo Mới</button>
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                            <label class="form-check-label" for="exampleCheck1">Check me out</label>
                                         </div>
+                                        <!-- mẫu input -->
+                                        
+                                    </div>
+                                    <!-- /.card-body -->
 
-                                        <!-- Khu vực thông báo lỗi và thành công -->
-                                        <div style="color: red;">
-                                            <?= $thongBaoLoi ?>
-                                        </div>
-                                        <div style="color: green;">
-                                            <?= $thongBaoThanhCong ?>
-                                        </div>
-
-                                    </form>
-                                </div>
-                                <!-- /.card-body -->
+                                    <div class="card-footer">
+                                        <a href="<?= BASE_URL_ADMIN . '?act=list-product' ?>">
+                                            <button class="btn btn-warning">Quay lại</button>
+                                        </a>
+                                        <button type="submit" name="submitForm" class="btn btn-primary">Tạo Mới</button>
+                                    </div>
+                                </form>
                             </div>
                             <!-- /.card -->
+
                         </div>
                         <!-- /.col -->
                     </div>

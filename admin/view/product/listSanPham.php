@@ -1,18 +1,19 @@
+<!-- header -->
 <?php include(__DIR__ . '/../layout/header.php'); ?>
-<!-- navbar -->
-<?php include(__DIR__ . '/../layout/navbar.php'); ?>
-<!-- sidebar -->
-<?php include(__DIR__ . '/../layout/sidebar.php'); ?>
-
-<?php
-//include_once "../DA1-N7/admin/controller/ProductController.php";
-//include_once "../DA1-N7/admin/model/Product.php";
-?>
 
 
 
 <body class="hold-transition sidebar-mini">
+
     <div class="wrapper">
+        <!-- Content Wrapper. Contains page content -->
+        <!-- navbar -->
+        <?php include(__DIR__ . '/../layout/navbar.php'); ?>
+
+        <!-- sidebar -->
+        <?php include(__DIR__ . '/../layout/sidebar.php'); ?>
+
+        <!-- content -->
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
@@ -38,21 +39,22 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
+                                <div class="card-header" >
                                     <a href="<?= BASE_URL_ADMIN . '?act=add-product' ?>">
                                         <button class='btn btn-success'>Thêm sản phẩm</button>
                                     </a>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
+                                    
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
                                                 <th>ID</th>
                                                 <th>Tên</th>
+                                                <th>Danh mục</th>
                                                 <th>Mô Tả Chi Tiết</th>
                                                 <th>Giá Gốc</th>
-                                                <th>Giá Khuyến Mãi</th>
                                                 <th>Hình Ảnh</th>
                                                 <th>Số Lượng Còn</th>
                                                 <th>Ngày Nhập</th>
@@ -64,9 +66,16 @@
                                                 <tr>
                                                     <td> <?= $product->id ?> </td>
                                                     <td> <?= $product->name ?> </td>
-                                                    <td class="description"> <?= $product->description ?> </td>
+                                                    <td> <?= $product->category_id ?> </td>
+                                                    <td class="description">
+                                                        <div class="desc-container" style="max-height: 40px; overflow: hidden; text-overflow: ellipsis;">
+                                                            <?= $product->description ?>
+                                                        </div>
+                                                        <?php if (strlen($product->description) > 100): ?>
+                                                            <button class="toggle-desc btn btn-link" style="padding: 0;">Xem thêm</button>
+                                                        <?php endif; ?>
+                                                    </td>
                                                     <td> <?= $product->price ?> </td>
-                                                    <td> <?= $product->sale_off_price ?></td>
                                                     <td>
                                                         <div style="height: 60px; width: 60px;">
                                                             <img style="max-height: 100%; max-width: 100%;" src="<?= IMG_ROOT . $product->image_src ?>" alt="">
@@ -107,5 +116,21 @@
         //footer
         include "./view/layout/footer.php"
         ?>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('.toggle-desc').forEach(function(button) {
+                    button.addEventListener('click', function() {
+                        const container = this.previousElementSibling;
+                        if (container.style.maxHeight === "none") {
+                            container.style.maxHeight = "40px";
+                            this.textContent = "Xem thêm";
+                        } else {
+                            container.style.maxHeight = "none";
+                            this.textContent = "Thu gọn";
+                        }
+                    });
+                });
+            });
+        </script>
 
 </body>

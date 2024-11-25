@@ -18,7 +18,7 @@ class ProductQuery
     public function all(){
         try{
             //1.Viét câu lệnh sql
-        $sql = "SELECT * FROM product";
+        $sql = "SELECT DISTINCT * FROM product";
           //Lưu ý: Nếu gặp lỗi 'no database selected" thì bổ sung thêm tên database trước tên bảng
 
             //2.Thực hiện truy vấn
@@ -34,7 +34,7 @@ class ProductQuery
             $product->name = $value["name"];
             $product->description = $value["description"];
             $product->price = $value["price"];
-            $product->sale_off_price = $value["sale_off_price"];
+            $product->category_id = $value["category_id"];
             $product->stock = $value["stock"];
             $product->image_src = $value["image_src"];
             $product->created_date = $value["created_date"];
