@@ -7,80 +7,80 @@
     <title>Document</title>
     <style>
         body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
 
-h3 {
-    margin: 0;
-    padding: 10px;
-    background-color: #f0f0f0;
-    border-bottom: 1px solid #ddd;
-}
+        h3 {
+            margin: 0;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-bottom: 1px solid #ddd;
+        }
 
-form {
-    width: 500px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #fff;
-}
+        form {
+            width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
 
-form div {
-    margin-bottom: 16px;
-}
+        form div {
+            margin-bottom: 16px;
+        }
 
-form span {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
+        form span {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
 
-form input[type="text"],
-form input[type="number"],
-form input[type="date"] {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 5px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-}
+        form input[type="text"],
+        form input[type="number"],
+        form input[type="date"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
 
-form button {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-}
+        form button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
 
-form button:hover {
-    background-color: #218838;
-}
+        form button:hover {
+            background-color: #218838;
+        }
 
-form a {
-    margin-right: 10px;
-    color: #007bff;
-    text-decoration: none;
-}
+        form a {
+            margin-right: 10px;
+            color: #007bff;
+            text-decoration: none;
+        }
 
-form a:hover {
-    text-decoration: underline;
-}
+        form a:hover {
+            text-decoration: underline;
+        }
 
-.error {
-    color: red;
-    margin-bottom: 10px;
-}
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
 
-.success {
-    color: green;
-    margin-bottom: 10px;
-}
+        .success {
+            color: green;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 
@@ -90,6 +90,12 @@ form a:hover {
 
     <!-- 2. Form nhập liệu -->
     <form action="" method="POST">
+
+        <div style="margin-bottom: 16px;">
+            <span>Nhập Danh Mục:</span>
+            <input type="text" name="category_id" value="<?= $product->category_id ?>" disabled>
+        </div>
+
         <!-- Khu vực nhập tên -->
         <div style="margin-bottom: 16px;">
             <span>Nhập Tên:</span>

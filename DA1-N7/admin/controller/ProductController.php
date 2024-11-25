@@ -1,4 +1,3 @@
-
 <?php
 
 // 1. Khai báo class ProductController
@@ -31,7 +30,7 @@ class ProductController
 
 
         // Hiển thị file view tương ứng. Hiển thị file list.php
-        include "view/product/list.php";
+        require_once "./view/product/listSanPham.php";
     }
 
     // Khái báo phương thức showCreate() để xử lý trường hợp người dùng truy cập trang tạo mới
@@ -52,6 +51,7 @@ class ProductController
 
 
             //3. Gán giá trị vào biến product
+            $product->category_id = trim($_POST["category_id"]);
             $product->name = trim($_POST["name"]);
             $product->description = trim($_POST["description"]);
             $product->price = trim($_POST["price"]);
@@ -96,7 +96,7 @@ class ProductController
             }
         }
         // Hiển thị file view
-        include "view/product/create.php";
+        include "./view/product/create.php";
     }
 
     // Khái báo phương thức showDetail($id) để xử lý trường hợp người dùng truy cập trang chi tiết
@@ -110,7 +110,7 @@ class ProductController
         if ($id !== "") {
             $product = $this->productQuery->find($id);
             // Hiển thị file view
-            include "view/product/detail.php";
+            include "./view/product/detail.php";
         } else {
             echo "Lỗi: Không nhận được thông tin ID. Mời bạn kiểm tra lại. <hr>";
         }
@@ -135,6 +135,7 @@ class ProductController
                 echo "<hr>";
 
                 // Gán giá trị vào biến product từ form
+                $product->category_id = trim($_POST["category_id"]);
                 $product->name = trim($_POST["name"]);
                 $product->description = trim($_POST["description"]);
                 $product->price = trim($_POST["price"]);
@@ -175,7 +176,7 @@ class ProductController
                 }
             }
             // Hiển thị file view
-            include "view/product/update.php";
+            include "./view/product/update.php";
         } else {
             echo "Lỗi: Không nhận được thông tin ID. Mời bạn kiểm tra lại. <hr>";
         }
@@ -190,7 +191,7 @@ class ProductController
             $dataDelete = $this->productQuery->delete($id);
             //2.Chuyển hướng về trang danh sách
             if ($dataDelete === "success") {
-                header("Location: ?act=product-list");
+                header("Location: ?act=list-product");
             }
         } else {
             echo "Lỗi thông tin Id trống hãy kiểm tra lại";

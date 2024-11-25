@@ -6,13 +6,7 @@ class ProductQuery
 
     public function __construct()
     {
-        try{
-            $this->pdo= new PDO("mysql:host=localhost; port=3306; dbname=duan1", "root", "");
-           echo "Kết nối thành công";
-        }catch (Exception $e){
-            echo "Lỗi: " . $e->getMessage();
-            echo "<hr>";
-        }
+        $this->pdo = connectDB();
     }
 
     public function __destruct()
@@ -24,7 +18,7 @@ class ProductQuery
     public function all(){
         try{
             //1.Viét câu lệnh sql
-        $sql = "SELECT * FROM product";
+        $sql = "SELECT DISTINCT * FROM product";
           //Lưu ý: Nếu gặp lỗi 'no database selected" thì bổ sung thêm tên database trước tên bảng
 
             //2.Thực hiện truy vấn
@@ -37,6 +31,7 @@ class ProductQuery
 
             //Gán giá trị
             $product->id = $value["id"];
+            $product->category_id = $value["category_id"];
             $product->name = $value["name"];
             $product->description = $value["description"];
             $product->price = $value["price"];
@@ -61,7 +56,7 @@ class ProductQuery
     public function insert(Product $product){
         try {
             
-            $sql = "INSERT INTO product(name, description, price, stock, image_src, created_date) VALUES('".$product->name."', '".$product->description."', '".$product->price."', '".$product->stock."',  '".$product->image_src."','".$product->created_date."')";
+            $sql = "INSERT INTO product(category_id, name, description, price, stock, image_src, created_date) VALUES('".$product->category_id."','".$product->name."', '".$product->description."', '".$product->price."', '".$product->stock."',  '".$product->image_src."','".$product->created_date."')";
             var_dump($sql);
             echo "<hr>";
             
@@ -88,6 +83,7 @@ class ProductQuery
             if ($data !== false) {            
                 $product = new Product();
                 $product->id = $data["id"];
+                $product->category_id = $data["category_id"];
                 $product->name = $data["name"];
                 $product->description = $data["description"];
                 $product->price = $data["price"];
@@ -109,7 +105,7 @@ class ProductQuery
 
     public function update($id, Product $product){
         try {
-            $sql = "UPDATE product SET name = '".$product->name."', description = '".$product->description."',  price = '".$product->price."', stock = '".$product->stock."', image_src = '".$product->image_src."', created_date = '".$product->created_date."' WHERE id = $id";
+            $sql = "UPDATE product SET category_id = '".$product->category_id."',name = '".$product->name."', description = '".$product->description."',  price = '".$product->price."', stock = '".$product->stock."', image_src = '".$product->image_src."', created_date = '".$product->created_date."' WHERE id = $id";
 
             $data = $this->pdo->exec($sql);
          

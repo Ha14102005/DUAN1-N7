@@ -47,10 +47,25 @@
                 $products = $conn->query($sql);
             }
             ?>
+            <?php
+            session_start();
+
+            // Kiểm tra trạng thái đăng nhập
+            $is_logged_in = isset($_SESSION['user_id']); // Kiểm tra session của người dùng
+            ?>
             <div class="account-user">
-                <a href="client/login.php" class="button"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
-                <a href="client/register.php" class="button"><i class="fas fa-user-plus"></i> Đăng ký</a>
+                <?php if ($is_logged_in): ?>
+                    <!-- Hiển thị nút Đăng xuất -->
+                    <form action="client/logout.php" method="post" style="display:inline-block;">
+                        <button type="submit" class="button"><i class="fas fa-sign-out-alt"></i> Đăng xuất</button>
+                    </form>
+                <?php else: ?>
+                    <!-- Hiển thị nút Đăng nhập và Đăng ký -->
+                    <a href="client/login.php" class="button"><i class="fas fa-sign-in-alt"></i> Đăng nhập</a>
+                    <a href="client/register.php" class="button"><i class="fas fa-user-plus"></i> Đăng ký</a>
+                <?php endif; ?>
             </div>
+
 
             <div class="account-button">
                 <img src="slide/icon.png" alt="Account" width="20px">
@@ -82,11 +97,10 @@
                     <?php
                     if ($products->num_rows > 0) {
                         while ($product = $products->fetch_assoc()) {
-
                     ?>
                             <div class="product-item">
-                                <a href="index2.php?id=<?php echo $product['id']; ?>">
-                                <img src="<?php echo $product['image_src']; ?>" alt="<?php echo $product['name']; ?>" width="150px">
+                                <a href="client/detail_product.php?id=<?php echo $product['id']; ?>">
+                                    <img src="<?php echo $product['image_src']; ?>" alt="<?php echo $product['name']; ?>" width="150px">
                                     <h4><?php echo $product['name']; ?></h4>
                                 </a>
                                 <p> <?php echo number_format($product['price'], 0, ',', '.'); ?> VNĐ</p>
@@ -95,7 +109,7 @@
                                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                                         <button type="submit" name="add_to_cart">Thêm vào giỏ hàng</button>
                                     </form>
-                                    <form action="checkout.php" method="post" style="display:inline-block;">
+                                    <form action="client/buynow.php" method="post" style="display:inline-block;">
                                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                                         <button type="submit" name="buy_now">Mua ngay</button>
                                     </form>

@@ -3,6 +3,7 @@
 class Product
 {
     public $id;
+    public $category_id;
     public $name;
     public $description;
     public $price;
@@ -20,5 +21,7 @@ class Product
         
     }
 }
+
+
 
 ?>
