@@ -139,6 +139,7 @@
     <!-- Code injected by live-server -->
     <!-- footer -->
     <?php include(__DIR__ . '/../layout/footer.php'); ?>
+
     <!-- end footer -->
 </body>
 

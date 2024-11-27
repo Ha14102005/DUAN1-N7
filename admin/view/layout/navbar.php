@@ -1,3 +1,4 @@
+
 <!-- Navbar -->
 <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <!-- Left navbar links -->
@@ -14,6 +15,7 @@
     </ul>
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
+      </li>
       <!-- Navbar Search -->
       <li class="nav-item">
         <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -45,6 +47,11 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
           <i class="fas fa-th-large"></i>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="<?= BASE_URL_ADMIN .'?act=logout-admin' ?>" onclick="return confirm('Đăng xuất tài khoản')">
+          <i class="fas fa-sign-out-alt"></i>
         </a>
       </li>
     </ul>

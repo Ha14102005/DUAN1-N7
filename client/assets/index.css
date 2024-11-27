@@ -5,22 +5,15 @@
     max-width: 100%;
 }
 
+body {
+    margin: 0;
+    padding: 0;
+}
+
 .boxcenter {
-    width: 90%;
+    max-width: 1200px;
     margin: 0 auto;
-}
-
-.row {
-    display: flex;
-    width: 100%;
-}
-
-.mb {
-    margin-bottom: 20px;
-}
-
-.mr {
-    margin-right: 2%;
+    padding: 20px;
 }
 
 .header {
@@ -29,7 +22,7 @@
     justify-content: space-between;
     background-color: #e4002b;
     padding: 10px;
-    border: 1px darkgreen solid;
+    border: 1px solid darkgreen;
     color: blue;
     border-radius: 5px;
 }
@@ -67,7 +60,27 @@
     background-color: #13ce4b;
 }
 
-.header .account-button {
+.account-user {
+    display: flex;
+    gap: 5px;
+}
+
+.account-user .button {
+    display: inline-flex;
+    align-items: center;
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.account-user .button i {
+    margin-right: 8px;
+}
+
+.account-button {
     display: flex;
     align-items: center;
     background-color: #000;
@@ -78,16 +91,16 @@
     cursor: pointer;
 }
 
-.header .account-button img {
+.account-button img {
     margin-right: 10px;
 }
 
-.header .account-button a {
+.account-button a {
     color: #fff;
     text-decoration: none;
 }
 
-.header .account-button:hover {
+.account-button:hover {
     background-color: #333;
 }
 
@@ -96,25 +109,20 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 20px;
     background-color: #e4002b;
     width: 100%;
 }
 
 nav li {
     display: flex;
-    text-align: center;
     align-items: center;
 }
 
 nav li a {
-    display: flex;
     text-align: center;
-    align-items: center;
-    list-style: none;
-    text-decoration: none;
-    margin: 30px 30px;
+    margin: 30px;
     color: #000;
+    text-decoration: none;
 }
 
 .banner {
@@ -139,20 +147,22 @@ nav li a {
     cursor: pointer;
     position: absolute;
     top: 50%;
-    width: auto;
     padding: 16px;
-    margin-top: -22px;
     color: white;
     font-weight: bold;
     font-size: 18px;
     transition: 0.6s ease;
-    border-radius: 0 3px 3px 0;
     user-select: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+}
+
+.prev {
+    left: 0;
 }
 
 .next {
     right: 0;
-    border-radius: 3px 0 0 3px;
 }
 
 .prev:hover,
@@ -160,7 +170,6 @@ nav li a {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Bố cục hàng sản phẩm */
 .search-results {
     display: flex;
     flex-wrap: wrap;
@@ -172,7 +181,7 @@ nav li a {
     border: 1px solid #ddd;
     padding: 15px;
     text-align: center;
-    width: calc(33.333% - 10px); /* Để chia đều mỗi sản phẩm trên một hàng */
+    width: calc(33.333% - 10px);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s;
 }
@@ -190,15 +199,17 @@ nav li a {
 .product-item h4 {
     font-size: 16px;
     font-weight: bold;
-    color: #333;
+    color: #1657d1;
     margin: 10px 0;
 }
 
 .product-item p {
-    margin: 5px 0;
+    font-weight: bold;
+    font-size: 20px; 
+    color: red;
 }
 
-/* Định dạng cho nút */
+
 .product-item form {
     display: inline-block;
 }
@@ -215,7 +226,7 @@ nav li a {
 }
 
 .product-item form button[name="add_to_cart"] {
-    background-color: #28a745; /* Màu xanh cho nút Thêm vào giỏ hàng */
+    background-color: #28a745;
 }
 
 .product-item form button[name="add_to_cart"]:hover {
@@ -223,101 +234,39 @@ nav li a {
 }
 
 .product-item form button[name="buy_now"] {
-    background-color: #dc3545; /* Màu đỏ cho nút Mua ngay */
+    background-color: #dc3545;
 }
 
 .product-item form button[name="buy_now"]:hover {
     background-color: #c82333;
 }
 
-.boxcenter {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.row {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-
-.boxleft,
-.boxright {
-    box-sizing: border-box;
-    padding: 20px;
-}
-
-.boxleft {
-    flex: 2;
-}
-
-.boxright {
-    flex: 1;
-}
-
-.box {
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-.boxtitle {
-    background-color: #f0f0f0;
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-}
-
-.account-user {
-    display: flex;
-    flex-direction: column; 
-    gap: 5px;
-    border-radius: 20px;
-}
-
-.account-user button {
-    display: flex;
-    align-items: center;
-    background-color: #0e1eac;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 20px;
-    margin-left: 20px;
-    cursor: pointer;
-}
-
-
-
-footer {
+.footer {
     background-color: #f2f2f2;
     padding: 50px 0;
 }
 
-.container {
+.footer .container {
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.row {
+.footer .row {
     display: flex;
     flex-wrap: wrap;
 }
 
-.col {
+.footer .col {
     flex: 1;
     padding: 0 20px;
 }
 
-.social {
+.footer .social {
     text-align: center;
     margin-top: 20px;
 }
 
-.social a {
+.footer .social a {
     font-size: 24px;
     margin: 0 10px;
     color: #333;

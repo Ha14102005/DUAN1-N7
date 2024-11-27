@@ -2,8 +2,8 @@
 
 
 
-define('BASE_URL'       , 'http://localhost/DA1-N7/');
-define('BASE_URL_ADMIN'       , 'http://localhost/DA1-N7/admin/');
+define('BASE_URL'       , 'http://localhost/da1/DA1-N7/client/index.php');
+define('BASE_URL_ADMIN'       , 'http://localhost/da1/DA1-N7/admin/');
 // Biến môi trường, dùng chung toàn hệ thống
 // Khai báo dưới dạng HẰNG SỐ để không phải dùng $GLOBALS
 

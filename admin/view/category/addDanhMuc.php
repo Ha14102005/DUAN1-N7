@@ -1,9 +1,9 @@
-<!-- header -->
-<?php include(__DIR__ . '/../layout/header.php'); ?>
+<?php include_once __DIR__ . '/view/layout/header.php';  // Đảm bảo đường dẫn chính xác
+?>
 <!-- navbar -->
-<?php include(__DIR__ . '/../layout/navbar.php'); ?>
+<?php include(__DIR__ . '/view/layout/navbar.php'); ?>
 <!-- sidebar -->
-<?php include(__DIR__ . '/../layout/sidebar.php'); ?>
+<?php include(__DIR__ . '/view/layout/sidebar.php'); ?>
 
 <body class="hold-transition sidebar-mini">
   <div class="wrapper">

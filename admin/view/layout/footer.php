@@ -2,7 +2,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.2.0
     </div>
-    <strong>Quản lí admin</a>.</strong>Ph54478
+    <strong>Quản lí admin</a>.</strong>Ph54665
   </footer>
 
   <!-- Control Sidebar -->

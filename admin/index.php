@@ -1,9 +1,10 @@
 <?php
+session_start();
 // Base URL
 include_once "../commons/env.php";
 include_once "../commons/function.php";
 
-// Nhúng các file cần thiết
+// Include necessary files
 include_once "controller/CategoryController.php";
 include_once "model/Category.php";
 include_once "controller/ProductController.php";
@@ -11,12 +12,17 @@ include_once "model/Product.php";
 include_once "model/ProductQuery.php";
 include_once "controller/AuthController.php";
 include_once "model/Admin.php";
+include_once 'controller/StatController.php';
 
-// Lấy giá trị act từ URL
+// Get the action and ID from URL
 $act = $_GET['act'] ?? '/';
 $id = $_GET['id'] ?? null;
 
-// Route
+if ($act !== 'login-admin' && $act !== 'check-login-admin') {
+    checkLoginAdmin();
+}
+
+// Routing logic
 match ($act) {
     // Category
     'list-category' => (new AdminDanhMucControler())->listDanhMuc(),
@@ -33,11 +39,24 @@ match ($act) {
     'update-product' => (new ProductController())->showUpdate($id),
     'delete-product' => (new ProductController())->delete($id),
 
-    // Quản lý tài khoản
-    'list-tai-khoan-quan-tri' => (new AuthController())->danhSachQuanTri($id),
-    'form-them-quan-tri' => (new AuthController())->formAddQuanTri($id),
-    'form-them-quan-tri' => (new AuthController())->postAddQuanTri($id),
+    //Thống kê
+    'thong-ke' => (new StatController())->showStatistics(),
+
+
+    // User management
+    'list-tai-khoan-quan-tri' => (new AuthController())->danhSachQuanTri(),
+    'form-them-quan-tri' => (new AuthController())->formAddQuanTri(),
+    'add-user' => (new AuthController())->postAddQuanTri(), // Fixed routing for add-user
     'form-sua-quan-tri' => (new AuthController())->formEditQuanTri($id),
     'sua-quan-tri' => (new AuthController())->postEditQuanTri($id),
+    'list-tai-khoan-khach-hang' => (new AuthController())->danhSachKhachHang(),
 
+    // Login and logout
+    'login-admin' => (new AuthController())->formLogin(),
+    'check-login-admin' => (new AuthController())->login(),
+    'logout-admin' => (new AuthController())->logout(),
+
+    // Default case
+    '/' => (new AuthController())->formLogin(),
+    default => throw new Exception("Invalid action: $act"), // Handles undefined actions
 };
