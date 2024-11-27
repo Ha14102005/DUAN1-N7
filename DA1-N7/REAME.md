@@ -31,4 +31,3 @@ Class giúp đối tượng Product tương tác với database
 - Tên file: ProductQuery.php
 - Tên class: ProductQuery
 - Thuộc tính: $pdo
-
