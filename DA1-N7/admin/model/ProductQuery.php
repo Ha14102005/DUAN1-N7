@@ -122,20 +122,35 @@ class ProductQuery
 
     public function delete($id){
         try {
-            // 1. Viết câu lệnh sql
-            $sql = "DELETE FROM product WHERE id = $id";
-
-            // 2. Thực hiện truy vấn
-            $data = $this->pdo->exec($sql);
-
-            // 3. Return kết quả
-            return "success";
-
+            // Kiểm tra ID hợp lệ
+            if (empty($id)) {
+                throw new Exception("ID không hợp lệ.");
+            }
+    
+            // 1. Viết câu lệnh SQL sử dụng prepared statement
+            $sql = "DELETE FROM product WHERE id = :id";
+    
+            // 2. Chuẩn bị câu lệnh
+            $stmt = $this->pdo->prepare($sql);
+    
+            // 3. Gán giá trị cho tham số :id
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    
+            // 4. Thực thi câu lệnh
+            $stmt->execute();
+    
+            // Kiểm tra nếu có dòng bị ảnh hưởng (chứng tỏ đã xóa thành công)
+            if ($stmt->rowCount() > 0) {
+                return "success";
+            } else {
+                return "Không tìm thấy sản phẩm với ID: $id";
+            }
         } catch (Exception $e) {
             echo "Lỗi: " . $e->getMessage();
             echo "<hr>";
         }
     }
+    
    
 }
 

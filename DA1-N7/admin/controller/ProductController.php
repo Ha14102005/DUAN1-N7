@@ -185,16 +185,21 @@ class ProductController
 
     public function delete($id)
     {
-        if ($id !== "") {
-
-            //1.Gọi model để xoá ư=ở database
+        if (!empty($id)) {
+            //1.Gọi model để xoá ở database
             $dataDelete = $this->productQuery->delete($id);
-            //2.Chuyển hướng về trang danh sách
+    
+            // Kiểm tra kết quả xóa
             if ($dataDelete === "success") {
                 header("Location: ?act=list-product");
+                exit();  // Dừng lại để tránh tiếp tục chạy các mã sau khi chuyển hướng
+            } else {
+                // Thông báo lỗi nếu không tìm thấy sản phẩm
+                echo "Không tìm thấy sản phẩm với ID: $id.";
             }
         } else {
-            echo "Lỗi thông tin Id trống hãy kiểm tra lại";
+            echo "Lỗi: ID không hợp lệ.";
         }
     }
+    
 }

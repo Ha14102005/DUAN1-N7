@@ -13,14 +13,10 @@ include_once "model/ProductQuery.php";
 include_once "controller/OrderController.php";
 include_once "model/Order.php";
 
-
-
-
 // Route
 $act = $_GET['act'] ?? '/';
 
 // Để bảo bảo tính chất chỉ gọi 1 hàm Controller để xử lý request thì mình sử dụng match
-
 match ($act) {
     // Trang chủ
 
@@ -44,5 +40,6 @@ match ($act) {
     'detail-order'=>(new AdminDonHangControler())->detailDonHang(),
     'form-edit-order'=>(new AdminDonHangControler())->formEditDonHang(),
     'edit-order'=>(new AdminDonHangControler())->postEditDonHang(),
+
     
 };

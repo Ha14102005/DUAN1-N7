@@ -1,205 +1,114 @@
 <?php include(__DIR__ . '/../layout/header.php'); ?>
 
-
-
 <body class="hold-transition sidebar-mini">
-
     <div class="wrapper">
-        <!-- Content Wrapper. Contains page content -->
-        <!-- navbar -->
+        <!-- Navbar -->
         <?php include(__DIR__ . '/../layout/navbar.php'); ?>
 
-        <!-- sidebar -->
+        <!-- Sidebar -->
         <?php include(__DIR__ . '/../layout/sidebar.php'); ?>
 
-        <!-- content -->
-        <!-- Content Wrapper. Contains page content -->
+        <!-- Content Wrapper -->
         <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
+            <!-- Content Header -->
             <section class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Update sản phẩm</h1>
+                            <h1>Cập nhật sản phẩm</h1>
                         </div>
                         <div class="col-sm-6">
                             <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">DataTables</li>
+                                <li class="breadcrumb-item"><a href="<?= BASE_URL_ADMIN ?>">Trang chủ</a></li>
+                                <li class="breadcrumb-item active">Cập nhật sản phẩm</li>
                             </ol>
                         </div>
                     </div>
-                </div><!-- /.container-fluid -->
+                </div>
             </section>
 
-            <!-- Main content -->
+            <!-- Main Content -->
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card card-primary">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Quick Example</h3>
-                                    </div>
-                                    <!-- /.card-header -->
-                                    <!-- form start -->
-                                    <form>
-                                        <div class="card-body">
-                                            <div style="margin-bottom: 16px;">
-                                                <span>Nhập Danh Mục:</span>
-                                                <input type="text" class="form-control" name="category_id" id="category_id" value="<?= htmlspecialchars($product->category_id) ?>">
-                                            </div>
-                                            <!-- Tên -->
-                                            <div class="form-group">
-                                                <label for="name">Tên sản phẩm</label>
-                                                <input type="text" class="form-control" name="name" id="name" value="<?= htmlspecialchars($product->name) ?>">
-                                            </div>
-                                            <!-- Chi tiết -->
-                                            <div class="form-group">
-                                                <label for="description">Thông tin chi tiết sản phẩm</label>
-                                                <input type="text" class="form-control" name="description" id="description" value="<?= htmlspecialchars($product->description) ?>">
-                                            </div>
-                                            <!-- Khu vực nhập giá -->
-                                            <div class="form-group">
-                                                <label for="price">Giá sản phẩm</label>
-                                                <input type="number" class="form-control" name="price" id="price" value="<?= htmlspecialchars($product->price) ?>">
-                                            </div>
-                                            <!-- Khu vực nhập số lượng sản phẩm còn trong kho -->
-                                            <div class="form-group">
-                                                <label for="stock">Số lượng tồn kho</label>
-                                                <input type="number" class="form-control" name="stock" id="stock" value="<?= htmlspecialchars($product->stock) ?>">
-                                            </div>
-
-                                            <!-- Khu vực nhập ảnh -->
-                                            <div class="form-group">
-                                                <span>Đường dẫn ảnh</span>
-                                                <input type="text" name="image" value="<?= htmlspecialchars($product->image_src) ?>">
-
-                                                <div class="form-control">
-                                                    <input type="file" class="" name="file_upload">
-                                                </div>
-                                            </div>
-                                            <!-- Khu vực nhập ngày tạo -->
-                                            <div class="form-control">
-                                                <span>Nhập Ngày Nhập:</span>
-                                                <input type="date" name="created_date" value="<?= htmlspecialchars($product->created_date) ?>">
-                                            </div>
-
-                                            <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                            </div>
-                                            <!-- mẫu input -->
-                                            <div class="form-group">
-                                                <label for="exampleInputFile">File input</label>
-                                                <div class="input-group">
-                                                    <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="exampleInputFile">
-                                                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
-                                                    </div>
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text">Upload</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /.card-body -->
-
-                                        <div class="card-footer">
-                                            <a href="<?= BASE_URL_ADMIN . '?act=list-product' ?>">
-                                                <button class="btn btn-warning">Quay lại</button>
-                                            </a>
-                                            <button type="submit" name="submitForm" class="btn btn-primary">Tạo Mới</button>
-                                        </div>
-                                        <!-- Khu vực thông báo lỗi và thành công -->
-                                        <?php if (!empty($thongBaoLoi)) : ?>
-                                            <div class="error">
-                                                <?= htmlspecialchars($thongBaoLoi) ?>
-                                            </div>
-                                        <?php endif; ?>
-
-                                        <?php if (!empty($thongBaoThanhCong)) : ?>
-                                            <div class="success">
-                                                <?= htmlspecialchars($thongBaoThanhCong) ?>
-                                            </div>
-                                        <?php endif; ?>
-                                    </form>
+                                <!-- Card Header -->
+                                <div class="card-header bg-primary">
+                                    <h3 class="card-title">Thông tin sản phẩm</h3>
                                 </div>
 
-                                <!-- 2. Form nhập liệu -->
-                                <form action="" method="POST" enctype="multipart/form-data" hidden>
-                                    <!-- Khu vực nhập tên -->
-                                    <div>
-                                        <span>Nhập Tên:</span>
-                                        <input type="text" name="name" value="<?= htmlspecialchars($product->name) ?>">
-                                    </div>
+                                <!-- Form Start -->
+                                <form action="" method="POST" enctype="multipart/form-data">
+                                    <div class="card-body">
+                                        <!-- Category -->
+                                        <div class="form-group">
+                                            <label for="category_id">Danh mục</label>
+                                            <input type="text" class="form-control" name="category_id" id="category_id" value="<?= htmlspecialchars($product->category_id) ?>" required>
+                                        </div>
 
-                                    <!-- Khu vực nhập mô tả chi tiết -->
-                                    <div>
-                                        <span>Nhập Mô tả chi tiết sản phẩm:</span>
-                                        <input type="text" name="description" value="<?= htmlspecialchars($product->description) ?>">
-                                    </div>
+                                        <!-- Product Name -->
+                                        <div class="form-group">
+                                            <label for="name">Tên sản phẩm</label>
+                                            <input type="text" class="form-control" name="name" id="name" value="<?= htmlspecialchars($product->name) ?>" required>
+                                        </div>
 
-                                    <!-- Khu vực nhập giá -->
-                                    <div>
-                                        <span>Nhập Giá:</span>
-                                        <input type="number" name="price" value="<?= htmlspecialchars($product->price) ?>">
-                                    </div>
+                                        <!-- Description -->
+                                        <div class="form-group">
+                                            <label for="description">Mô tả chi tiết</label>
+                                            <textarea class="form-control" name="description" id="description" rows="4" required><?= htmlspecialchars($product->description) ?></textarea>
+                                        </div>
 
-                                    <!-- Khu vực nhập số lượng còn -->
-                                    <div>
-                                        <span>Nhập Số lượng còn:</span>
-                                        <input type="number" name="stock" value="<?= htmlspecialchars($product->stock) ?>">
-                                    </div>
+                                        <!-- Price -->
+                                        <div class="form-group">
+                                            <label for="price">Giá sản phẩm</label>
+                                            <input type="number" class="form-control" name="price" id="price" value="<?= htmlspecialchars($product->price) ?>" required>
+                                        </div>
 
-                                    <!-- Khu vực nhập ảnh -->
-                                    <div>
-                                        <span>Đường Dẫn Ảnh:</span>
-                                        <input type="text" name="image_src" value="<?= htmlspecialchars($product->image_src) ?>">
+                                        <!-- Stock -->
+                                        <div class="form-group">
+                                            <label for="stock">Số lượng tồn kho</label>
+                                            <input type="number" class="form-control" name="stock" id="stock" value="<?= htmlspecialchars($product->stock) ?>" required>
+                                        </div>
 
-                                        <div>
-                                            <span>Chọn ảnh</span>
-                                            <input type="file" name="file_upload">
+                                        <!-- Image Upload -->
+                                        <div class="form-group">
+                                            <label for="file_upload">Hình ảnh sản phẩm</label>
+                                            <input type="file" class="form-control-file" name="file_upload" id="file_upload">
+                                            <small class="form-text text-muted">Đường dẫn hiện tại: <?= htmlspecialchars($product->image_src) ?></small>
+                                        </div>
+
+                                        <!-- Created Date -->
+                                        <div class="form-group">
+                                            <label for="created_date">Ngày nhập</label>
+                                            <input type="date" class="form-control" name="created_date" id="created_date" value="<?= htmlspecialchars($product->created_date) ?>" required>
                                         </div>
                                     </div>
 
-                                    <!-- Khu vực nhập ngày tạo -->
-                                    <div>
-                                        <span>Nhập Ngày Tạo:</span>
-                                        <input type="date" name="created_date" value="<?= htmlspecialchars($product->created_date) ?>">
+                                    <!-- Card Footer -->
+                                    <div class="card-footer">
+                                        <a href="<?= BASE_URL_ADMIN . '?act=list-product' ?>" class="btn btn-secondary">Quay lại</a>
+                                        <button type="submit" name="submitForm" class="btn btn-primary">Lưu thay đổi</button>
                                     </div>
-
-                                    <!-- Khu vực button submit và điều hướng -->
-                                    <div>
-                                        <a href="?act=product-list">Quay Lại</a>
-                                        <button type="submit" name="submitForm">Lưu lại</button>
-                                    </div>
-
-
                                 </form>
+
+                                <!-- Notification -->
+                                <?php if (!empty($thongBaoLoi)): ?>
+                                    <div class="alert alert-danger mt-3"><?= htmlspecialchars($thongBaoLoi) ?></div>
+                                <?php endif; ?>
+
+                                <?php if (!empty($thongBaoThanhCong)): ?>
+                                    <div class="alert alert-success mt-3"><?= htmlspecialchars($thongBaoThanhCong) ?></div>
+                                <?php endif; ?>
                             </div>
-                            <!-- /.card -->
                         </div>
-                        <!-- /.col -->
                     </div>
-                    <!-- /.row -->
                 </div>
-                <!-- /.container-fluid -->
             </section>
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
 
-
-
-
-        <?php
-        //footer
-        include "./view/layout/footer.php"
-        ?>
-
-
+        <!-- Footer -->
+        <?php include(__DIR__ . '/../layout/footer.php'); ?>
+    </div>
 </body>
-
 </html>

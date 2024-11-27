@@ -221,5 +221,5 @@
 
     </html>
     <div>
-        Mời bạn truy cập trang quản trị. <a href="admin">Click here</a>
+        Mời bạn truy cập trang quản trị. <a href="admin/?act=list-productv">Click here</a>
     </div>
