@@ -32,6 +32,8 @@ class AdminDonHangControler{
     public function formEditDonHang()  {
         $id=$_GET['id_order'];
         $DonHang=$this->Order->getDetailDonHang($id);
+        $TrangThai=$this->Order->getStatusDonHang();
+        
         // var_dump($danhmuc);
         // die();
         if(isset($DonHang)){
@@ -50,6 +52,7 @@ class AdminDonHangControler{
             $recipient_phone =$_POST['recipient_phone'];
             $recipient_email =$_POST['recipient_email'];
             $recipient_address =$_POST['recipient_address'];
+            $status =$_POST['status_id'];
             
             //tao mang chua du lieu
             $errors=[];
@@ -67,7 +70,7 @@ class AdminDonHangControler{
             }
             //neu khong co loi
             if(empty($errors)){
-                $this->Order->updateDonHang($id,$recipient_name,$recipient_phone,$recipient_email,$recipient_address);
+                $this->Order->updateDonHang($id,$recipient_name,$recipient_phone,$recipient_email,$recipient_address,$status);
                 header('location:'. BASE_URL_ADMIN .'?act=list-order');
                 exit();
             }else{
