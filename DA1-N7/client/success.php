@@ -21,7 +21,7 @@ unset($_SESSION['order_success']);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đặt Hàng Thành Công</title>
-    <link rel="stylesheet" href="style_success.css">
+    <link rel="stylesheet" href="../style/style_success.css">
 </head>
 
 <body>
