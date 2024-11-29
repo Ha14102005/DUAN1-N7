@@ -56,15 +56,50 @@
               </p>
             </a>
           </li>
-          <!-- Thống kê -->
-          <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+<!-- Thống kê -->
+<li class="nav-item">
+            <a href="<?= BASE_URL_ADMIN . '?act=thong-ke' ?>" class="nav-link">
+            <i class="fas fa-chart-pie"></i>
               <p>
                 Thống kê
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>
+          </li>
+          <!-- Bình luận -->
+          <li class="nav-item">
+            <a href="<?= BASE_URL_ADMIN . '?act=binh-luan' ?>" class="nav-link">
+            <i class="fas fa-comments"></i>
+              <p>
+                Bình luận
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <!-- Quản lí tài khoản -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-user"></i>
+              <p>
+                Quản lý tài khoản
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <!-- Danh sách các mục con -->
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?= BASE_URL_ADMIN . '?act=list-tai-khoan-quan-tri' ?>" class="nav-link">
+                  <i class="nav-icon far fa-user"></i>
+                  <p>Tài khoản quản trị</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="<?= BASE_URL_ADMIN . '?act=list-tai-khoan-khach-hang' ?>" class="nav-link">
+                  <i class="nav-icon far fa-user"></i>
+                  <p>Tài khoản khách hàng</p>
+                </a>
+              </li>
+            </ul>
           </li>
 
         </ul>

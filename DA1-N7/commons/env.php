@@ -2,7 +2,7 @@
 
 
 
-define('BASE_URL'       , 'http://localhost/DUNA1/DA1-N7/');
+define('BASE_URL'       , 'http://localhost/DUAN1/DA1-N7/');
 define('BASE_URL_ADMIN'       , 'http://localhost/DUAN1/DA1-N7/admin/');
 // Biến môi trường, dùng chung toàn hệ thống
 // Khai báo dưới dạng HẰNG SỐ để không phải dùng $GLOBALS

@@ -13,13 +13,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $email = $_POST['email'];
     $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
-    $role = $_POST['role'];
+
+    // Đặt vai trò mặc định
+    $role = isset($_POST['role']) ? $_POST['role'] : 'user';
 
     $stmt = $conn->prepare("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("ssss", $username, $email, $password, $role);
     $stmt->execute();
 
     echo "<div class='alert alert-success'>Đăng ký thành công!</div>";
+    header("Location: login.php");
+    exit();
 }
 ?>
 

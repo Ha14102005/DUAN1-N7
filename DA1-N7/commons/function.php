@@ -21,5 +21,28 @@ function connectDB() {
         echo ("Connection failed: " . $e->getMessage());
     }
 }
+function checkLoginAdmin() {
+    if(isset($_SESSION["usr_admin"])) {
+        // header("location :" .BASE_URL_ADMIN . '?act=login-admin');
+        // var_dump('abc');die;
+        require_once './view/auth/formLogin.php';
+        exit();
+ }   
+}
+function pdo_query($sql, $sql_args = [])
+{
+    $conn = connectDB(); // Kết nối cơ sở dữ liệu
+    $stmt = $conn->prepare($sql);
+//    $stmt->execute($sql_args);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function pdo_query_value($sql, $sql_args = [])
+{
+    $conn = connectDB();
+    $stmt = $conn->prepare($sql);
+//    $stmt->execute($sql_args);
+    return $stmt->fetchColumn();
+}
 
 ?>
