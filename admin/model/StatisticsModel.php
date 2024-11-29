@@ -1,6 +1,6 @@
 
 <?php
-class StatModel
+class StatisticsModel
 {
     function pdo_query($sql, $params = [])
     {

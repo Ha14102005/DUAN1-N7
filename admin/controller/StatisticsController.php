@@ -1,12 +1,12 @@
 <?php
 // controller/StatController.php
-class StatController
+class StatisticsController
 {
 public function showStatistics()
 {
 // Logic để lấy dữ liệu thống kê và render ra view
-include_once 'model/StatModel.php';
-$statModel = new StatModel();
+include_once 'model/StatisticsModel.php';
+$statModel = new StatisticsModel();
 
 $statis = $statModel->loadall_statis();
 $doanhthuNgay = $statModel->ngay();

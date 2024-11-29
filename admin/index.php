@@ -12,7 +12,7 @@ include_once "model/Product.php";
 include_once "model/ProductQuery.php";
 include_once "controller/AuthController.php";
 include_once "model/Admin.php";
-include_once 'controller/StatController.php';
+include_once 'controller/StatisticsController.php';
 include_once "model/Comment.php";
 require_once './controller/BinhLuanController.php';
 
@@ -42,7 +42,7 @@ match ($act) {
     'delete-product' => (new ProductController())->delete($id),
 
     //Thống kê
-    'thong-ke' => (new StatController())->showStatistics(),
+    'thong-ke' => (new StatisticsController())->showStatistics(),
 
 
     // User management
