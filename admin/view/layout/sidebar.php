@@ -70,9 +70,19 @@
           <!-- Thống kê -->
           <li class="nav-item">
             <a href="<?= BASE_URL_ADMIN . '?act=thong-ke' ?>" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+            <i class="fas fa-chart-pie"></i>
               <p>
                 Thống kê
+                <span class="right badge badge-danger">New</span>
+              </p>
+            </a>
+          </li>
+          <!-- Bình luận -->
+          <li class="nav-item">
+            <a href="<?= BASE_URL_ADMIN . '?act=binh-luan' ?>" class="nav-link">
+            <i class="fas fa-comments"></i>
+              <p>
+                Bình luận
                 <span class="right badge badge-danger">New</span>
               </p>
             </a>

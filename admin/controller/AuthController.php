@@ -19,7 +19,7 @@ class AuthController
         }
 
         // Gọi model để lấy thông tin người dùng theo ID
-        $user = $this->modelAdmin->getTaiKhoanById($id);
+        $user = $this->modelAdmin->getAllTaiKhoan($id);
 
         // Kiểm tra xem có tìm thấy người dùng không
         if (!$user) {
@@ -105,7 +105,7 @@ class AuthController
             exit();
         }
 
-        $admin = $this->modelAdmin->getTaiKhoanById($id); // Fetch admin data by ID
+        $admin = $this->modelAdmin->getAllTaiKhoan($id); // Fetch admin data by ID
         if (!$admin) {
             $_SESSION['error'] = "Admin not found!";
             header("Location: " . BASE_URL_ADMIN . "?act=list-tai-khoan-quan-tri");
@@ -136,7 +136,7 @@ class AuthController
             }
 
             // Update admin details
-            $this->modelAdmin->updateTaiKhoan($id, $username, $email, $phone, $role, $create_at);
+            $this->modelAdmin->getDetailTaiKhoan($id, $username, $email, $phone, $role, $create_at);
 
             // Redirect to admin list
             header("Location: " . BASE_URL_ADMIN . "?act=list-tai-khoan-quan-tri");

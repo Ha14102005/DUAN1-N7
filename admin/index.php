@@ -13,6 +13,8 @@ include_once "model/ProductQuery.php";
 include_once "controller/AuthController.php";
 include_once "model/Admin.php";
 include_once 'controller/StatController.php';
+include_once "model/Comment.php";
+require_once './controller/BinhLuanController.php';
 
 // Get the action and ID from URL
 $act = $_GET['act'] ?? '/';
@@ -55,6 +57,8 @@ match ($act) {
     'login-admin' => (new AuthController())->formLogin(),
     'check-login-admin' => (new AuthController())->login(),
     'logout-admin' => (new AuthController())->logout(),
+    // Route Bình Luận
+    'binh-luan' => (new BinhLuanController())->getAllBinhLuan(),
 
     // Default case
     '/' => (new AuthController())->formLogin(),
