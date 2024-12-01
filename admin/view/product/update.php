@@ -40,11 +40,11 @@
                             <div class="card">
                                 <div class="card card-primary">
                                     <div class="card-header">
-                                        <h3 class="card-title">Quick Example</h3>
+                                        <h3 class="card-title">Update</h3>
                                     </div>
                                     <!-- /.card-header -->
                                     <!-- form start -->
-                                    <form>
+                                    <form action="" method="POST" enctype="multipart/form-data">
                                         <div class="card-body">
                                             <!-- Tên -->
                                             <div class="form-group">
@@ -81,11 +81,6 @@
                                                 <span>Nhập Ngày Nhập:</span>
                                                 <input type="date" name="created_date" value="<?= htmlspecialchars($product->created_date) ?>">
                                             </div>
-
-                                            <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                                <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                            </div>
                                            
                                         </div>
                                         <!-- /.card-body -->
@@ -94,7 +89,7 @@
                                             <a href="<?= BASE_URL_ADMIN . '?act=list-product' ?>">
                                                 <button class="btn btn-warning">Quay lại</button>
                                             </a>
-                                            <button type="submit" name="submitForm" class="btn btn-primary">Tạo Mới</button>
+                                            <button type="submit" name="submitForm" class="btn btn-primary" require="Bạn có chắc muốn sửa sản phẩm này không?">Sửa</button>
                                         </div>
                                         <!-- Khu vực thông báo lỗi và thành công -->
                                         <?php if (!empty($thongBaoLoi)) : ?>
@@ -108,8 +103,18 @@
                                                 <?= htmlspecialchars($thongBaoThanhCong) ?>
                                             </div>
                                         <?php endif; ?>
+                                       
                                     </form>
                                 </div>
+
+
+
+
+
+
+
+
+
 
                                 <!-- 2. Form nhập liệu -->
                                 <form action="" method="POST" enctype="multipart/form-data" hidden>
@@ -182,6 +187,7 @@
         //footer
         include "./view/layout/footer.php"
         ?>
+    </div>
 
 
 </body>

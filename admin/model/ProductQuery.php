@@ -102,9 +102,9 @@ class ProductQuery
         }
     }
 
-    public function update($id, Product $product){
+    public function update($id,Product $product){
         try {
-            $sql = "UPDATE product SET name = '".$product->name."', description = '".$product->description."',  price = '".$product->price."', stock = '".$product->stock."', image_src = '".$product->image_src."', created_date = '".$product->created_date."' WHERE id = $id";
+            $sql = "UPDATE product SET `name` = '".$product->name."', `description` = '".$product->description."',  `price` = '".$product->price."', `stock` = '".$product->stock."', `image_src` = '".$product->image_src."', `created_date` = '".$product->created_date."' WHERE `id` = $id";
 
             $data = $this->pdo->exec($sql);
          

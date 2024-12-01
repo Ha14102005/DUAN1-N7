@@ -45,8 +45,6 @@ class ProductController
 
         //2.Kiểm tra submit form 
         if (isset($_POST["submitForm"])) {
-            echo "Log thử giá trị người dùng nhập vào form<br>";
-            var_dump($_POST);
             echo "<hr>";
 
 
@@ -120,7 +118,6 @@ class ProductController
     public function showUpdate($id)
     {
         // Log thử giá trị id nhận được
-        echo "ID muốn xem chỉnh sửa là: $id <hr>";
 
         // Kiểm tra giá trị id để xử lý logic
         if ($id !== "") {
@@ -129,9 +126,6 @@ class ProductController
             $thongBaoThanhCong = "";
 
             if (isset($_POST["submitForm"])) {
-                echo "Log thử giá trị người dùng nhập vào form<br>";
-                var_dump($_POST);
-                echo "<hr>";
 
                 // Gán giá trị vào biến product từ form
                 $product->name = trim($_POST["name"]);
@@ -165,11 +159,12 @@ class ProductController
                 // Kiểm tra trạng thái lỗi và thực hiện update nếu không có lỗi
                 if ($thongBaoLoi === "") {
                     // Gọi model để update dữ liệu
-                    $dataUpdate = $this->productQuery->update($id, $product);
+                    $dataUpdate = $this->productQuery->update($id,$product);
 
                     // Thông báo thành công
                     if ($dataUpdate === "ok") {
                         $thongBaoThanhCong = "Chỉnh sửa thành công. Mời tiếp tục tạo mới hoặc quay lại trang danh sách";
+                       
                     }
                 }
             }
