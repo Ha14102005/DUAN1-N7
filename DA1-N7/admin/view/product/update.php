@@ -85,21 +85,24 @@
                                         </div>
                                     </div>
 
-                                    <!-- Card Footer -->
+                                    <?php if (!empty($thongBaoLoi)) : ?>
+                                        <div class="p-3 mb-2 bg-danger text-white">
+                                            <?= htmlspecialchars($thongBaoLoi) ?>
+                                        </div>
+                                    <?php endif; ?>
+
+                                    <?php if (!empty($thongBaoThanhCong)) : ?>
+                                        <div class="p-3 mb-2 bg-success text-white">
+                                            <?= htmlspecialchars($thongBaoThanhCong) ?>
+                                        </div>
+                                    <?php endif; ?>
+
                                     <div class="card-footer">
-                                        <a href="<?= BASE_URL_ADMIN . '?act=list-product' ?>" class="btn btn-secondary">Quay lại</a>
-                                        <button type="submit" name="submitForm" class="btn btn-primary">Lưu thay đổi</button>
+                                        <a href="<?= BASE_URL_ADMIN . '?act=list-product' ?>"><button class="btn btn-warning" type="button">Quay lại</button></a>
+
+                                        <button type="submit" name="submitForm" class="btn btn-primary" require="Bạn có chắc muốn sửa sản phẩm này không?">Sửa</button>
                                     </div>
-                                </form>
-
-                                <!-- Notification -->
-                                <?php if (!empty($thongBaoLoi)): ?>
-                                    <div class="alert alert-danger mt-3"><?= htmlspecialchars($thongBaoLoi) ?></div>
-                                <?php endif; ?>
-
-                                <?php if (!empty($thongBaoThanhCong)): ?>
-                                    <div class="alert alert-success mt-3"><?= htmlspecialchars($thongBaoThanhCong) ?></div>
-                                <?php endif; ?>
+                                    <!-- Khu vực thông báo lỗi và thành công -->
                             </div>
                         </div>
                     </div>
@@ -111,4 +114,5 @@
         <?php include(__DIR__ . '/../layout/footer.php'); ?>
     </div>
 </body>
+
 </html>

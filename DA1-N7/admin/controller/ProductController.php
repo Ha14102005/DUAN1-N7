@@ -164,7 +164,7 @@ class ProductController
                     $dataUpdate = $this->productQuery->update($id, $product);
 
                     // Thông báo thành công
-                    if ($dataUpdate === "ok") {
+                    if ($dataUpdate ) {
                         $thongBaoThanhCong = "Chỉnh sửa thành công. Mời tiếp tục tạo mới hoặc quay lại trang danh sách";
                     }
                 }
