@@ -15,72 +15,71 @@ class ProductQuery
         $this->pdo = null;
     }
 
-    public function all(){
-        try{
+    public function all()
+    {
+        try {
             //1.Viét câu lệnh sql
-        $sql = "SELECT DISTINCT * FROM product";
-          //Lưu ý: Nếu gặp lỗi 'no database selected" thì bổ sung thêm tên database trước tên bảng
+            $sql = "SELECT DISTINCT * FROM product";
+            //Lưu ý: Nếu gặp lỗi 'no database selected" thì bổ sung thêm tên database trước tên bảng
 
             //2.Thực hiện truy vấn
-        $data = $this->pdo->query($sql)->fetchAll();
- 
+            $data = $this->pdo->query($sql)->fetchAll();
+
             //3.Convert dữ liệu từ array sang object
-        $danhSach = [];
-        foreach($data as $value){
-            $product = new Product();
+            $danhSach = [];
+            foreach ($data as $value) {
+                $product = new Product();
 
-            //Gán giá trị
-            $product->id = $value["id"];
-            $product->category_id = $value["category_id"];
-            $product->name = $value["name"];
-            $product->description = $value["description"];
-            $product->price = $value["price"];
-            $product->stock = $value["stock"];
-            $product->image_src = $value["image_src"];
-            $product->created_date = $value["created_date"];
+                //Gán giá trị
+                $product->id = $value["id"];
+                $product->category_id = $value["category_id"];
+                $product->name = $value["name"];
+                $product->description = $value["description"];
+                $product->price = $value["price"];
+                $product->stock = $value["stock"];
+                $product->image_src = $value["image_src"];
+                $product->created_date = $value["created_date"];
 
-            array_push($danhSach, $product);
-        }
+                array_push($danhSach, $product);
+            }
 
             //4. Return kết quả
             return $danhSach;
-
-
-        }catch (Exception $e){
-                echo "Lỗi: " . $e->getMessage();
-                echo "<hr>";
-            }
-    }
-
-
-    public function insert(Product $product){
-        try {
-            
-            $sql = "INSERT INTO product(category_id, name, description, price, stock, image_src, created_date) VALUES('".$product->category_id."','".$product->name."', '".$product->description."', '".$product->price."', '".$product->stock."',  '".$product->image_src."','".$product->created_date."')";
-            var_dump($sql);
-            echo "<hr>";
-            
-            $data = $this->pdo->exec($sql);
-
-           
-            if($data ===1){
-                return "ok";
-            }
-
-
         } catch (Exception $e) {
             echo "Lỗi: " . $e->getMessage();
             echo "<hr>";
         }
     }
 
-    public function find($id){
-        try{
+
+    public function insert(Product $product)
+    {
+        try {
+
+            $sql = "INSERT INTO product(category_id, name, description, price, stock, image_src, created_date) VALUES('" . $product->category_id . "','" . $product->name . "', '" . $product->description . "', '" . $product->price . "', '" . $product->stock . "',  '" . $product->image_src . "','" . $product->created_date . "')";
+            var_dump($sql);
+            echo "<hr>";
+
+            $data = $this->pdo->exec($sql);
+
+
+            if ($data === 1) {
+                return "ok";
+            }
+        } catch (Exception $e) {
+            echo "Lỗi: " . $e->getMessage();
+            echo "<hr>";
+        }
+    }
+
+    public function find($id)
+    {
+        try {
             $sql = "SELECT * FROM product WHERE id = $id";
 
             $data = $this->pdo->query($sql)->fetch();
 
-            if ($data !== false) {            
+            if ($data !== false) {
                 $product = new Product();
                 $product->id = $data["id"];
                 $product->category_id = $data["category_id"];
@@ -90,68 +89,47 @@ class ProductQuery
                 $product->stock = $data["stock"];
                 $product->image_src = $data["image_src"];
                 $product->created_date = $data["created_date"];
-               
-            return $product;
 
+                return $product;
             } else {
                 echo "ID không tồn tại. Mời bạn kiểm tra lại <br>";
             }
-
-        }catch (Exception $e){
+        } catch (Exception $e) {
             echo "Lỗi: " . $e->getMessage();
             echo "<hr>";
         }
     }
 
-    public function update($id, Product $product){
+    public function update($id, Product $product)
+    {
         try {
-            $sql = "UPDATE product SET category_id = '".$product->category_id."',name = '".$product->name."', description = '".$product->description."',  price = '".$product->price."', stock = '".$product->stock."', image_src = '".$product->image_src."', created_date = '".$product->created_date."' WHERE id = $id";
+            $sql = "UPDATE product SET `name` = '" . $product->name . "', `description` = '" . $product->description . "',  `price` = '" . $product->price . "', `stock` = '" . $product->stock . "', `image_src` = '" . $product->image_src . "', `created_date` = '" . $product->created_date . "' WHERE `id` = $id";
 
             $data = $this->pdo->exec($sql);
-         
-            if($data === 1 || $data === 0){
-              return "success";  
-            }
-            
 
-        } catch (Exception $e) {
-            echo "Lỗi: " . $e->getMessage();
-            echo "<hr>";
-        }
-    }
-
-    public function delete($id){
-        try {
-            // Kiểm tra ID hợp lệ
-            if (empty($id)) {
-                throw new Exception("ID không hợp lệ.");
-            }
-    
-            // 1. Viết câu lệnh SQL sử dụng prepared statement
-            $sql = "DELETE FROM product WHERE id = :id";
-    
-            // 2. Chuẩn bị câu lệnh
-            $stmt = $this->pdo->prepare($sql);
-    
-            // 3. Gán giá trị cho tham số :id
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-    
-            // 4. Thực thi câu lệnh
-            $stmt->execute();
-    
-            // Kiểm tra nếu có dòng bị ảnh hưởng (chứng tỏ đã xóa thành công)
-            if ($stmt->rowCount() > 0) {
+            if ($data === 1 || $data === 0) {
                 return "success";
-            } else {
-                return "Không tìm thấy sản phẩm với ID: $id";
             }
         } catch (Exception $e) {
             echo "Lỗi: " . $e->getMessage();
             echo "<hr>";
         }
     }
-    
-   
-}
 
-?>
+    public function delete($id)
+    {
+        try {
+            // 1. Viết câu lệnh sql
+            $sql = "DELETE FROM product WHERE id = $id";
+
+            // 2. Thực hiện truy vấn
+            $data = $this->pdo->exec($sql);
+
+            // 3. Return kết quả
+            return "success";
+        } catch (Exception $e) {
+            echo "Lỗi: " . $e->getMessage();
+            echo "<hr>";
+        }
+    }
+}

@@ -41,9 +41,9 @@ match ($act) {
     //Product
     'list-product' => (new ProductController())->showList(),
     'add-product' => (new ProductController())->showCreate(),
-    'detail-product' => (new ProductController())->showDetail($id),
-    'update-product' => (new ProductController())->showUpdate($id),
-    'delete-product' => (new ProductController())->delete($id),
+    'detail-product' => (new ProductController())->showDetail($_GET['id']),
+    'update-product' => (new ProductController())->showUpdate($_GET['id']),
+    'delete-product' => (new ProductController())->delete($_GET['id']),
 
     //Order
     'list-order' => (new AdminDonHangControler())->listDonHang(),

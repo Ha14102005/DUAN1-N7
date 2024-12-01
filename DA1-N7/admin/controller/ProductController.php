@@ -33,7 +33,7 @@ class ProductController
         require_once "./view/product/listSanPham.php";
     }
 
-    // Khái báo phương thức showCreate() để xử lý trường hợp người dùng truy cập trang tạo mới
+    //Khái báo phương thức showCreate() để xử lý trường hợp người dùng truy cập trang tạo mới
     public function showCreate()
     {
         //1.Khai baos biến cần thiết
@@ -99,8 +99,8 @@ class ProductController
         include "./view/product/create.php";
     }
 
-    // Khái báo phương thức showDetail($id) để xử lý trường hợp người dùng truy cập trang chi tiết
-    // Lưu ý: Phải nhận vào param là $id muốn xem xem chi tiết
+    // // Khái báo phương thức showDetail($id) để xử lý trường hợp người dùng truy cập trang chi tiết
+    // // Lưu ý: Phải nhận vào param là $id muốn xem xem chi tiết
     public function showDetail($id)
     {
         // Log thử giá trị id nhận được
@@ -116,12 +116,10 @@ class ProductController
         }
     }
 
-    // Khái báo phương thức showUpdate($id) để xử lý trường hợp người dùng truy cập trang chỉnh sửa
-    // Lưu ý: Phải nhận vào param là $id muốn xem chỉnh sửa
+
     public function showUpdate($id)
     {
         // Log thử giá trị id nhận được
-        echo "ID muốn xem chỉnh sửa là: $id <hr>";
 
         // Kiểm tra giá trị id để xử lý logic
         if ($id !== "") {
@@ -130,12 +128,8 @@ class ProductController
             $thongBaoThanhCong = "";
 
             if (isset($_POST["submitForm"])) {
-                echo "Log thử giá trị người dùng nhập vào form<br>";
-                var_dump($_POST);
-                echo "<hr>";
 
                 // Gán giá trị vào biến product từ form
-                $product->category_id = trim($_POST["category_id"]);
                 $product->name = trim($_POST["name"]);
                 $product->description = trim($_POST["description"]);
                 $product->price = trim($_POST["price"]);
@@ -185,21 +179,16 @@ class ProductController
 
     public function delete($id)
     {
-        if (!empty($id)) {
-            //1.Gọi model để xoá ở database
+        if ($id !== "") {
+
+            //1.Gọi model để xoá ư=ở database
             $dataDelete = $this->productQuery->delete($id);
-    
-            // Kiểm tra kết quả xóa
+            //2.Chuyển hướng về trang danh sách
             if ($dataDelete === "success") {
                 header("Location: ?act=list-product");
-                exit();  // Dừng lại để tránh tiếp tục chạy các mã sau khi chuyển hướng
-            } else {
-                // Thông báo lỗi nếu không tìm thấy sản phẩm
-                echo "Không tìm thấy sản phẩm với ID: $id.";
             }
         } else {
-            echo "Lỗi: ID không hợp lệ.";
+            echo "Lỗi thông tin Id trống hãy kiểm tra lại";
         }
     }
-    
 }
