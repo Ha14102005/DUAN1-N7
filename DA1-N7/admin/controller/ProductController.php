@@ -104,7 +104,7 @@ class ProductController
     public function showDetail($id)
     {
         // Log thử giá trị id nhận được
-        echo "ID muốn xem chi tiết là: $id <hr>";
+       
 
         // Kiểm tra giá trị id để xử lý logic
         if ($id !== "") {

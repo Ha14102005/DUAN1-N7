@@ -46,6 +46,19 @@ class AdminDonHang{
             echo 'lỗi' .$e->getMessage();
         }
     }
+    public function getStatusDonHang() {
+        try {
+            $sql = 'SELECT * FROM order_status';
+
+            $stmt=$this->conn->prepare($sql);
+
+            $stmt->execute();
+
+            return $stmt->fetchAll();
+        } catch (Exception $e) {
+            echo 'lỗi' .$e->getMessage();
+        }
+    }
     public function getProductDonHang($id) {
         try {
             $sql = 'SELECT DISTINCT order_items.*,product.name
@@ -66,9 +79,9 @@ class AdminDonHang{
         }
     }
 
-    public function updateDonHang($id,$name,$phone,$email,$address) {
+    public function updateDonHang($id,$name,$phone,$email,$address,$status) {
         try {
-            $sql = 'UPDATE orders SET `recipient_name`=:ten,`recipient_email`=:mail,`recipient_phone`=:dienthoai,`recipient_address`=:diachi WHERE `order_id`=:id';
+            $sql = 'UPDATE orders SET `recipient_name`=:ten,`recipient_email`=:mail,`recipient_phone`=:dienthoai,`recipient_address`=:diachi,`status_id`=:trangthai WHERE `order_id`=:id';
 
 
             $stmt=$this->conn->prepare($sql);
@@ -80,6 +93,7 @@ class AdminDonHang{
                     ':mail'=>$email,
                     ':diachi'=>$address,
                     ':id'=>$id,
+                    ':trangthai'=>$status
                 ]
             );
             return true;

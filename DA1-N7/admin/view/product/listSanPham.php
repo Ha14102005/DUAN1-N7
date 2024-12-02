@@ -39,14 +39,14 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header" >
+                                <div class="card-header">
                                     <a href="<?= BASE_URL_ADMIN . '?act=add-product' ?>">
                                         <button class='btn btn-success'>Thêm sản phẩm</button>
                                     </a>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    
+
                                     <table id="example2" class="table table-bordered table-hover">
                                         <thead>
                                             <tr>
@@ -86,7 +86,7 @@
                                                     <td> <?= $product->stock ?> </td>
                                                     <td> <?= $product->created_date ?> </td>
                                                     <td>
-                                                        <a href="<?= BASE_URL_ADMIN . '?act=add-product&id=' . $product->id ?>"> Xem</a>
+                                                        <a href="?act=detail-product&id=<?= $product->id ?>"> Xem</a>
                                                         <a href="?act=update-product&id=<?= $product->id ?>"> Sửa </a>
                                                         <a href="?act=delete-product&id=<?= $product->id ?>" onclick="return confirm('Bạn có chắc chắn xoá?')"> Xoá </a>
                                                     </td>
