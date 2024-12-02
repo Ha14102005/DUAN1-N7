@@ -68,8 +68,12 @@ match ($act) {
     'check-login-admin' => (new AuthController())->login(),
     'logout-admin' => (new AuthController())->logout(),
 
+    'binh-luan'=>(new BinhLuanController())->getAllBinhLuan(),
+    // xoa bl
+        'delete_binh_luan' => (new BinhLuanController())->deleteBinhLuan(),
     // Default case
     '/' => (new AuthController())->formLogin(),
     default => throw new Exception("Invalid action: $act"), // Handles undefined actions
 
+    
 };

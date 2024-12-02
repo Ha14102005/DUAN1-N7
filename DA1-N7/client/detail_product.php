@@ -16,7 +16,7 @@ if ($conn->connect_error) {
 // Kiểm tra nếu ID sản phẩm tồn tại trong URL
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    
+
     // Truy vấn sản phẩm
     $sql = "SELECT * FROM product WHERE id = $id";
     $result = $conn->query($sql);
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['comment_content'])) {
     if (isset($_SESSION['user_id'])) {
         $user_id = $_SESSION['user_id'];
         $comment_content = $_POST['comment_content'];
-        
+
         // Thêm bình luận vào cơ sở dữ liệu
         $sql_insert_comment = "INSERT INTO comments (user_id, product_id, content, created_at) 
                                VALUES ($user_id, $id, '$comment_content', NOW())";
@@ -107,12 +107,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['comment_content'])) {
                 <p><strong>Số lượng còn lại:</strong> <?php echo $product['stock']; ?> sản phẩm</p>
                 <p><strong>Ngày nhập kho:</strong> <?php echo date("d/m/Y", strtotime($product['created_date'])); ?></p>
             </div>
+            <div>
+                <form action="cart.php" method="post" style="display:inline-block;">
+                    <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                    <button type="submit" name="add_to_cart">Thêm vào giỏ hàng</button>
+                </form>
+                <form action="buynow.php" method="post" style="display:inline-block;">
+                    <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                    <button type="submit" name="buy_now">Mua ngay</button>
+                </form>
+            </div>
         </div>
 
         <!-- Bình luận -->
         <div class="comments-section">
             <h2>Bình luận</h2>
-            
+
             <?php if ($result_comments->num_rows > 0): ?>
                 <?php while ($comment = $result_comments->fetch_assoc()): ?>
                     <div class="comment">
@@ -124,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['comment_content'])) {
             <?php else: ?>
                 <p>Chưa có bình luận nào cho sản phẩm này.</p>
             <?php endif; ?>
-            
+
             <?php if (isset($_SESSION['user_id'])): ?>
                 <form action="" method="POST">
                     <textarea name="comment_content" required placeholder="Viết bình luận của bạn..." rows="4"></textarea>
