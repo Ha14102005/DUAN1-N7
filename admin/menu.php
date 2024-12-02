@@ -1,54 +1,89 @@
 <?php
 
-case 'list_user':
+switch ($act) {
+    // Category
+    case 'list-category':
+        (new AdminDanhMucControler())->listDanhMuc();
+        break;
+    case 'form-add-category':
+        (new AdminDanhMucControler())->formAddDanhMuc();
+        break;
+    case 'add-category':
+        (new AdminDanhMucControler())->postAddDanhMuc();
+        break;
+    case 'form-edit-category':
+        (new AdminDanhMucControler())->formEditDanhMuc();
+        break;
+    case 'edit-category':
+        (new AdminDanhMucControler())->postEditDanhMuc();
+        break;
+    case 'delete-category':
+        (new AdminDanhMucControler())->deleteDanhMuc();
+        break;
 
-if (isset($_SESSION['admin'])) {
-$listuser = loadall_user();
-render(
-'list_user',
-['listuser' => $listuser]
-);
-} else {
-header("location: Thongke.php?act=login");
-}
+    // Product
+    case 'list-product':
+        (new ProductController())->showList();
+        break;
+    case 'add-product':
+        (new ProductController())->showCreate();
+        break;
+    case 'detail-product':
+        (new ProductController())->showDetail($id);
+        break;
+    case 'update-product':
+        (new ProductController())->showUpdate($id);
+        break;
+    case 'delete-product':
+        (new ProductController())->delete($id);
+        break;
 
-break;
-// chỉnh sửa user
-case 'edit_user':
+    // Statistics
+    case 'thong-ke':
+        (new StatisticsController())->showStatistics();
+        break;
 
-if (isset($_SESSION['admin'])) {
-if (isset($_GET['id_user']) && ($_GET['id_user'] > 0)) {
-$id_user = $_GET['id_user'];
-$user = loadone_user($id_user);
-}
-render(
-'update_user',
-['user' => $user]
-);
-} else {
-header("location: Thongke.php?act=login");
-}
+    // User management
+    case 'list-tai-khoan-quan-tri':
+        (new AuthController())->danhSachQuanTri();
+        break;
+    case 'form-them-quan-tri':
+        (new AuthController())->formAddQuanTri();
+        break;
+    case 'add-user': // Fixed routing for add-user
+        (new AuthController())->postAddQuanTri();
+        break;
+    case 'form-sua-quan-tri':
+        (new AuthController())->formEditQuanTri($id);
+        break;
+    case 'sua-quan-tri':
+        (new AuthController())->postEditQuanTri($id);
+        break;
+    case 'list-tai-khoan-khach-hang':
+        (new AuthController())->danhSachKhachHang();
+        break;
 
-break;
-case 'update_user':
-if (isset($_POST['btn_update']) && ($_POST['btn_update'])) {
-$id_user = $_POST['id_user'];
-$user_name = $_POST['user_name'];
-$full_name = $_POST['full_name'];
-$email_user = $_POST['email_user'];
-$password = $_POST['password'];
-$role = $_POST['role'];
-update_user($id_user, $user_name, $full_name, $email_user, $password, $role);
-echo '<script>alert("Cập nhật tài khoản thành công!")</script>';
+    // Login and logout
+    case 'login-admin':
+        (new AuthController())->formLogin();
+        break;
+    case 'check-login-admin':
+        (new AuthController())->login();
+        break;
+    case 'logout-admin':
+        (new AuthController())->logout();
+        break;
+
+    // Bình luận
+    case 'binh-luan':
+        (new BinhLuanController())->getAllBinhLuan();
+        break;
+
+    // Default case
+    case '/':
+        (new AuthController())->formLogin();
+        break;
+    default:
+        throw new Exception("Invalid action: $act");
 }
-header('location: Thongke.php?act=list_user');
-break;
-// Xóa người dùng
-case 'delete-user':
-    if (isset($_GET['id']) && $_GET['id'] > 0) {
-        $id_user = intval($_GET['id']);
-        delete_user($id_user); // Hàm xóa user trong model
-        echo '<script>alert("Xóa tài khoản thành công!");</script>';
-    }
-    header("Location: " . BASE_URL_ADMIN . "?act=list-user");
-    exit;
+?>

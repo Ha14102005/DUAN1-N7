@@ -27,7 +27,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-header">
-                                <a href="<?= BASE_URL_ADMIN . '?act=add-user' ?>">
+                                <a href="<?= BASE_URL_ADMIN . '?act=form-sua-quan-tri' ?>">
                                 </a>
                             </div>
                             <!-- /.card-header -->
@@ -56,7 +56,7 @@
                                             <td> <?= htmlspecialchars($user['role'] ?? 'N/A') ?> </td>
                                             <td>
                                                 
-                                                <a href="<?= BASE_URL_ADMIN . '?act=form-sua-quan-tri'  ?>"><i class="fas fa-edit"></i></a>
+                                                <a href="<?= BASE_URL_ADMIN . '?act=form-sua-quan-tri'  ?>"><i class="fas fa-edit "></i></a>
                                             </td>
                                         </tr>
                                     <?php } ?>

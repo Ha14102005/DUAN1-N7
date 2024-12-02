@@ -5,34 +5,50 @@ class Comment
     public $conn;
 
     public function __construct()
-    { // Hàm khởi tạo kết nối đối tượng
+    { 
+        // Hàm khởi tạo kết nối đối tượng
         $this->conn = connectDB();
     }
 
+    /**
+     * Lấy tất cả bình luận kèm thông tin sản phẩm và người dùng.
+     */
     public function getAllBinhLuan()
-    {
-        try {
-            $sql = 'SELECT binh_luans.*, san_phams.ten_san_pham, tai_khoans.ho_ten
-FROM binh_luans
-INNER JOIN san_phams ON binh_luans.san_pham_id = san_phams.id
-INNER JOIN tai_khoans ON binh_luans.tai_khoan_id = tai_khoans.id;';
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute();
-            return $stmt->fetchAll();
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+{
+    try {
+        $sql = 'SELECT comments.*,
+                       product.name AS product_name, 
+                       users.username AS user_name
+                FROM comments
+                INNER JOIN product ON comments.product_id = product.id
+                INNER JOIN users ON comments.user_id = users.user_id;';
+        $stmt = $this->conn->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    } catch (\Throwable $th) {
+        // Ghi log lỗi và hiển thị thông tin
+        error_log($th->getMessage());
+        echo "Lỗi: " . $th->getMessage();
+        return false;
     }
+}
 
-    public function deleteBinhLuan($id)
+    /**
+     * Xóa bình luận theo comment_id.
+     */
+    public function deleteBinhLuan($comment_id)
     {
         try {
-            $sql = 'DELETE FROM binh_luans WHERE id = ?';
+            $sql = 'DELETE FROM comments WHERE comment_id = :id';
             $stmt = $this->conn->prepare($sql);
-            $stmt->execute([$id]);
+            $stmt->execute([
+                ':id' =>$comment_id
+            ]);
             return true;
         } catch (\Throwable $th) {
-            //throw $th;
+            // Ghi log lỗi (nếu cần)
+            error_log($th->getMessage());
+            return false;
         }
     }
 }

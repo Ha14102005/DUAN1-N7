@@ -86,7 +86,13 @@ class Admin
             return false;
         }
     }
-
+    public function deleteKhachHangById($id) {
+        $sql = "DELETE FROM khach_hang WHERE id = :id";
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+    
+        return $stmt->execute();
+    }
    
 }
 

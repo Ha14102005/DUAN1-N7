@@ -53,9 +53,13 @@
                                                     </td>
                                                     <td> <?= htmlspecialchars($user['role'] ?? 'N/A') ?> </td>
                                                     <td>
-                                                        <a href="delete.php?id=<?= $user['id'] ?>" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa tài khoản này?');">
-                                                       <i class="fas fa-trash-alt"></i>
-                                                        </a> <!-- Đảm bảo URL đúng -->
+                                                    <td>
+                                                        <a href="<?= BASE_URL_ADMIN . '?act=delete-khach-hang&id=' . $user['user_id '] ?>"
+                                                            class="btn btn-danger"
+                                                            onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này?');">
+                                                            <i class="fas fa-trash-alt"></i>
+                                                        </a>
+                                                    </td>
                                                     </td>
                                                 </tr>
                                             <?php } ?>

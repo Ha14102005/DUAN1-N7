@@ -34,7 +34,6 @@
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <a href="<?= BASE_URL . '?act=form-add-danh-muc' ?>"><button class="btn btn-success">Thêm Danh Mục</button></a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -55,14 +54,13 @@
                     <?php foreach ($listBinhLuan as $key => $BinhLuan): ?>
                     <tr>
                       <td><?php echo $key+1 ?></td>
-                      <td><?php echo $BinhLuan['ten_san_pham']; ?></td>
-                      <td><?php echo $BinhLuan['ho_ten']; ?></td>
-                      <td><?php echo $BinhLuan['noi_dung']; ?></td>
-                      <td><?php echo $BinhLuan['ngay_dang'] ;?></td>
+                      <td><?php echo $BinhLuan['product_name']; ?></td>
+                      <td><?php echo $BinhLuan['user_name']; ?></td>
+                      <td><?php echo $BinhLuan['content']; ?></td>
+                      <td><?php echo $BinhLuan['created_at'] ;?></td>
 
-                      <td>
-                        <a href="<?= BASE_URL . '?act=form-edit-binh_luan&idbinh_luanc='.$BinhLuan['id'] ?>"><button class="btn btn-warning">Sửa</button></a>
-                        <a href="<?= BASE_URL . '?act=delete-binh_luan&id_binh_luan='.$BinhLuan['id'] ?>"><button class="btn btn-danger">Xóa</button></a>
+                      <td>   
+                        <a href="<?= BASE_URL . '?act=delete_binh_luan&id_binh_luan='.$BinhLuan['comment_id'] ?>"><button class="btn btn-danger">Xóa</button></a>
                       </td>
                     </tr>
                     <?php endforeach ?>
@@ -89,22 +87,6 @@
  <?php include "./view/layout/footer.php"; ?>
 <!-- end footer  -->
 <!-- Page specific script -->
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true, "lengthChange": false, "autoWidth": false,
-      "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
+
 </body>
 </html>
