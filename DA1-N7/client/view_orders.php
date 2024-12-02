@@ -50,6 +50,7 @@ $order_result = $stmt->get_result();
                         <th>Ngày đặt</th>
                         <th>Tổng tiền</th>
                         <th>Trạng thái</th>
+                        <th>Xem chi tiết</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -82,7 +83,9 @@ $order_result = $stmt->get_result();
                                 }
                                 ?>
                             </td>
-                            
+                            <td>
+                                <button type="submit"> Xem chi tiết đơn hàng</button>
+                            </td>
                         </tr>
                     <?php endwhile; ?>
                 </tbody>

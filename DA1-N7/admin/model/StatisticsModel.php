@@ -1,4 +1,3 @@
-
 <?php
 class StatisticsModel
 {
@@ -18,51 +17,59 @@ class StatisticsModel
         return $stmt->fetchColumn();
     }
 
+    // Thống kê tổng quan theo danh mục
     function loadall_statis()
-{
-    $sql = "SELECT c.id_cate as idcate, c.name_cate as namecate, count(p.id_pro) as pro_quantity, min(p.price) as min_price, max(p.price) as max_price, avg(p.price) as avg_price";
-    $sql .= " FROM product p LEFT JOIN category c ON c.id_cate = p.idcate";
-    $sql .= " GROUP BY c.id_cate ORDER BY c.id_cate DESC";
-    $liststatis = pdo_query($sql);
-    return $liststatis;
-}
+    {
+        $sql = "SELECT c.category_id AS idcate, c.Name AS namecate, 
+                       COUNT(p.id) AS pro_quantity, 
+                       MIN(p.price) AS min_price, 
+                       MAX(p.price) AS max_price, 
+                       AVG(p.price) AS avg_price
+                FROM product p 
+                LEFT JOIN categories c ON c.category_id = p.category_id
+                GROUP BY c.category_id 
+                ORDER BY c.category_id DESC";
+        return $this->pdo_query($sql);
+    }
 
-function thonngke()
-{
-    $sql = "SELECT *,COUNT(product.name_pro) AS sluong FROM product INNER JOIN category ON product.idcate = category.id_cate GROUP BY category.name_cate;";
-    $a = pdo_query($sql);
-    return $a;
-}
 
-function ngay()
-{
-    $sql = "SELECT SUM(`total_amount`) FROM `bill` WHERE `status_pay` = '1' AND `order_date` >= NOW() - INTERVAL 1 DAY ";
-    $liststatis = pdo_query_value($sql);
-    return $liststatis;
-}
-function tuan()
-{
-    $sql = "SELECT SUM(`total_amount`) FROM `bill` WHERE `status_pay` = '1' AND `order_date` >= NOW() - INTERVAL 1 WEEK ";
-    $liststatis = pdo_query_value($sql);
-    return $liststatis;
-}
-function thang()
-{
-    $sql = "SELECT SUM(`total_amount`) FROM `bill` WHERE `status_pay` = '1' AND `order_date` >= NOW() - INTERVAL 1 MONTH ";
-    $liststatis = pdo_query_value($sql);
-    return $liststatis;
-}
-function nam()
-{
-    $sql = "SELECT SUM(`total_amount`) FROM `bill` WHERE `status_pay` = '1' AND `order_date` >= NOW() - INTERVAL 1 YEAR ";
-    $liststatis = pdo_query_value($sql);
-    return $liststatis;
-}
 
-function tungthang($a)
-{
-    $sql = "SELECT SUM(`total_amount`) as soluong FROM `bill` WHERE `status_pay` = '1' AND Month(order_date) = '$a' ";
-    $liststatis = pdo_query_value($sql);
-    return $liststatis;
-}
+    // Tính doanh thu theo trạng thái
+    function doanhthu_theo_trangthai($interval)
+    {
+        $sql = "SELECT SUM(o.total_amount) 
+            FROM orders o 
+            WHERE o.status_id IN (6, 8, 9) 
+            AND o.order_date >= NOW() - INTERVAL $interval";
+        return $this->pdo_query_value($sql);
+    }
+
+    function ngay()
+    {
+        return $this->doanhthu_theo_trangthai('1 DAY');
+    }
+
+    function tuan()
+    {
+        return $this->doanhthu_theo_trangthai('1 WEEK');
+    }
+
+    function thang()
+    {
+        return $this->doanhthu_theo_trangthai('1 MONTH');
+    }
+
+    function nam()
+    {
+        return $this->doanhthu_theo_trangthai('1 YEAR');
+    }
+
+    // Thống kê tổng quan
+    function thongke_tongquan()
+    {
+        $sql = "SELECT COUNT(order_id) AS total_orders, SUM(total_amount) AS total_revenue 
+                FROM orders 
+                WHERE status_id IN (5, 6)";
+        return $this->pdo_query($sql);
+    }
 }
