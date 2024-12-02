@@ -104,10 +104,17 @@
                     </div>
                   </div>
                   <!-- /.card-body -->
+                  <!--Thông báo  -->
+                  
+                  <!-- /thongbao -->
 
+                  <!-- card foot -->
                   <div class="card-footer">
+                    <a href="<?= BASE_URL_ADMIN . '?act=list-order' ?>"><button class="btn btn-warning" type="button">Quay lại</button></a>
                     <button type="submit" class="btn btn-primary">Submit</button>
+
                   </div>
+
                 </form>
               </div>
             </div>
@@ -125,6 +132,8 @@
     <!-- footer -->
     <?php include(__DIR__ . '/../layout/footer.php'); ?>
     <!-- end footer -->
+
+
 </body>
 
 </html>

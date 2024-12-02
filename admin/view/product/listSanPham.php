@@ -86,7 +86,7 @@
                                                     <td> <?= $product->stock ?> </td>
                                                     <td> <?= $product->created_date ?> </td>
                                                     <td>
-                                                        <a href="<?= BASE_URL_ADMIN . '?act=add-product&id=' . $product->id ?>"> Xem</a>
+                                                        <a href="?act=detail-product&id=<?= $product->id ?>"> Xem</a>
                                                         <a href="?act=update-product&id=<?= $product->id ?>"> Sửa </a>
                                                         <a href="?act=delete-product&id=<?= $product->id ?>" onclick="return confirm('Bạn có chắc chắn xoá?')"> Xoá </a>
                                                     </td>

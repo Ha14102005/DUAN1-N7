@@ -100,8 +100,7 @@ class ProductController
     // Lưu ý: Phải nhận vào param là $id muốn xem xem chi tiết
     public function showDetail($id)
     {
-        // Log thử giá trị id nhận được
-        echo "ID muốn xem chi tiết là: $id <hr>";
+       
 
         // Kiểm tra giá trị id để xử lý logic
         if ($id !== "") {
@@ -155,20 +154,19 @@ class ProductController
                 if ($product->name === "" || $product->description === "" || $product->price === "" || $product->stock === "" || $product->created_date === "") {
                     $thongBaoLoi = "Tên, Giá, và Ngày tạo là bắt buộc. Hãy nhập đầy đủ.";
                 }
-
+                
                 // Kiểm tra trạng thái lỗi và thực hiện update nếu không có lỗi
                 if ($thongBaoLoi === "") {
                     // Gọi model để update dữ liệu
                     $dataUpdate = $this->productQuery->update($id,$product);
 
                     // Thông báo thành công
-                    if ($dataUpdate === "ok") {
+                    if ($dataUpdate) {
                         $thongBaoThanhCong = "Chỉnh sửa thành công. Mời tiếp tục tạo mới hoặc quay lại trang danh sách";
                        
                     }
                 }
             }
-            // Hiển thị file view
             include "./view/product/update.php";
         } else {
             echo "Lỗi: Không nhận được thông tin ID. Mời bạn kiểm tra lại. <hr>";

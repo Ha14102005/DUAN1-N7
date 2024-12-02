@@ -158,20 +158,12 @@
                                     </div>
                                     <!-- /.col -->
                                 </div>
-                                <!-- /.row -->
-
-                                <!-- this row will not appear when printing -->
-                                <!-- <div class="row no-print">
-                                    <div class="col-12">
-                                        <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-                                        <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
-                                            Payment
-                                        </button>
-                                        <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                                            <i class="fas fa-download"></i> Generate PDF
-                                        </button>
+                                <div class="row mt-4">
+                                        <div class="col-12">
+                                            <a href="<?= BASE_URL_ADMIN . '?act=form-edit-order&id_order=' . $DonHang['order_id'] ?>" class="btn btn-warning">Sửa đơn hàng</a>
+                                            <a href="<?= BASE_URL_ADMIN . '?act=list-order' ?>" class="btn btn-secondary">Quay lại danh sách</a>
+                                        </div>
                                     </div>
-                                </div> -->
                             </div>
                             <!-- /.invoice -->
                         </div><!-- /.col -->

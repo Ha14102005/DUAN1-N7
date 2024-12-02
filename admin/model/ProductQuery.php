@@ -76,7 +76,10 @@ class ProductQuery
 
     public function find($id){
         try{
-            $sql = "SELECT * FROM product WHERE id = $id";
+            $sql = "SELECT *
+                    FROM product 
+                    
+                    WHERE id = $id";
 
             $data = $this->pdo->query($sql)->fetch();
 
@@ -84,6 +87,7 @@ class ProductQuery
                 $product = new Product();
                 $product->id = $data["id"];
                 $product->name = $data["name"];
+                $product->category_id=$data["category_id"];
                 $product->description = $data["description"];
                 $product->price = $data["price"];
                 $product->stock = $data["stock"];

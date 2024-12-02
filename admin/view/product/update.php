@@ -81,92 +81,30 @@
                                                 <span>Nhập Ngày Nhập:</span>
                                                 <input type="date" name="created_date" value="<?= htmlspecialchars($product->created_date) ?>">
                                             </div>
-                                           
+
                                         </div>
                                         <!-- /.card-body -->
-
-                                        <div class="card-footer">
-                                            <a href="<?= BASE_URL_ADMIN . '?act=list-product' ?>">
-                                                <button class="btn btn-warning">Quay lại</button>
-                                            </a>
-                                            <button type="submit" name="submitForm" class="btn btn-primary" require="Bạn có chắc muốn sửa sản phẩm này không?">Sửa</button>
-                                        </div>
-                                        <!-- Khu vực thông báo lỗi và thành công -->
                                         <?php if (!empty($thongBaoLoi)) : ?>
-                                            <div class="error">
+                                            <div class="p-3 mb-2 bg-danger text-white">
                                                 <?= htmlspecialchars($thongBaoLoi) ?>
                                             </div>
                                         <?php endif; ?>
 
                                         <?php if (!empty($thongBaoThanhCong)) : ?>
-                                            <div class="success">
+                                            <div class="p-3 mb-2 bg-success text-white">
                                                 <?= htmlspecialchars($thongBaoThanhCong) ?>
                                             </div>
                                         <?php endif; ?>
-                                       
+
+                                        <div class="card-footer">
+                                            <a href="<?= BASE_URL_ADMIN .'?act=list-product' ?>"><button class="btn btn-warning" type="button">Quay lại</button></a>
+                                                
+                                            <button type="submit" name="submitForm" class="btn btn-primary" require="Bạn có chắc muốn sửa sản phẩm này không?">Sửa</button>
+                                        </div>
+                                        <!-- Khu vực thông báo lỗi và thành công -->
+
                                     </form>
                                 </div>
-
-
-
-
-
-
-
-
-
-
-                                <!-- 2. Form nhập liệu -->
-                                <form action="" method="POST" enctype="multipart/form-data" hidden>
-                                    <!-- Khu vực nhập tên -->
-                                    <div>
-                                        <span>Nhập Tên:</span>
-                                        <input type="text" name="name" value="<?= htmlspecialchars($product->name) ?>">
-                                    </div>
-
-                                    <!-- Khu vực nhập mô tả chi tiết -->
-                                    <div>
-                                        <span>Nhập Mô tả chi tiết sản phẩm:</span>
-                                        <input type="text" name="description" value="<?= htmlspecialchars($product->description) ?>">
-                                    </div>
-
-                                    <!-- Khu vực nhập giá -->
-                                    <div>
-                                        <span>Nhập Giá:</span>
-                                        <input type="number" name="price" value="<?= htmlspecialchars($product->price) ?>">
-                                    </div>
-
-                                    <!-- Khu vực nhập số lượng còn -->
-                                    <div>
-                                        <span>Nhập Số lượng còn:</span>
-                                        <input type="number" name="stock" value="<?= htmlspecialchars($product->stock) ?>">
-                                    </div>
-
-                                    <!-- Khu vực nhập ảnh -->
-                                    <div>
-                                        <span>Đường Dẫn Ảnh:</span>
-                                        <input type="text" name="image_src" value="<?= htmlspecialchars($product->image_src) ?>">
-
-                                        <div>
-                                            <span>Chọn ảnh</span>
-                                            <input type="file" name="file_upload">
-                                        </div>
-                                    </div>
-
-                                    <!-- Khu vực nhập ngày tạo -->
-                                    <div>
-                                        <span>Nhập Ngày Tạo:</span>
-                                        <input type="date" name="created_date" value="<?= htmlspecialchars($product->created_date) ?>">
-                                    </div>
-
-                                    <!-- Khu vực button submit và điều hướng -->
-                                    <div>
-                                        <a href="?act=product-list">Quay Lại</a>
-                                        <button type="submit" name="submitForm">Lưu lại</button>
-                                    </div>
-
-
-                                </form>
                             </div>
                             <!-- /.card -->
                         </div>
