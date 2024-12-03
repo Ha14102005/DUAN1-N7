@@ -86,9 +86,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Thêm chi tiết sản phẩm vào `order_items`
                 $order_item_query = "
-INSERT INTO order_items (order_id, product_id, quantity, price) 
-VALUES (?, ?, ?, ?)
-";
+                 INSERT INTO order_items (order_id, product_id, quantity, price) 
+                 VALUES (?, ?, ?, ?)
+                 ";
                 $stmt = $conn->prepare($order_item_query);
                 foreach ($cart_data as $item) {
                     $stmt->bind_param("iiid", $order_id, $item['product_id'], $item['quantity'], $item['price']);

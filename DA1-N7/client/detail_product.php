@@ -107,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['comment_content'])) {
                 <p><strong>Số lượng còn lại:</strong> <?php echo $product['stock']; ?> sản phẩm</p>
                 <p><strong>Ngày nhập kho:</strong> <?php echo date("d/m/Y", strtotime($product['created_date'])); ?></p>
             </div>
-            <div>
+            <div class="click">
                 <form action="cart.php" method="post" style="display:inline-block;">
                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                     <button type="submit" name="add_to_cart">Thêm vào giỏ hàng</button>

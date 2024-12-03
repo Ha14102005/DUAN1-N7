@@ -84,8 +84,9 @@ $order_result = $stmt->get_result();
                                 ?>
                             </td>
                             <td>
-                                <button type="submit"> Xem chi tiết đơn hàng</button>
+                              <a href="order_detail.php?order_id=<?php echo $order['order_id']; ?>" class="button">Xem chi tiết</a>
                             </td>
+
                         </tr>
                     <?php endwhile; ?>
                 </tbody>

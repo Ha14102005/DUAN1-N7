@@ -213,7 +213,7 @@ nav li a {
     margin-top: 10px;
 }
 
-.actions {
+.click {
     border: 1px solid #ddd;
     padding: 15px;
     text-align: center;
@@ -222,17 +222,17 @@ nav li a {
     transition: transform 0.2s;
 }
 
-.actions:hover {
+.click:hover {
     transform: scale(1.05);
 }
 
-.actions img {
+.click img {
     width: 100%;
     height: auto;
     margin-bottom: 10px;
 }
 
-.actions h4 {
+.click h4 {
     font-size: 16px;
     font-weight: bold;
     color: #333;
@@ -240,11 +240,11 @@ nav li a {
 }
 
 
-.actions form {
+.click form {
     display: inline-block;
 }
 
-.actions form button {
+.click form button {
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
@@ -255,19 +255,19 @@ nav li a {
     margin-top: 10px;
 }
 
-.actions form button[name="add_to_cart"] {
+.click form button[name="add_to_cart"] {
     background-color: #28a745;
 }
 
-.actions form button[name="add_to_cart"]:hover {
+.click form button[name="add_to_cart"]:hover {
     background-color: #218838;
 }
 
-.actions form button[name="buy_now"] {
+.click form button[name="buy_now"] {
     background-color: #dc3545;
 }
 
-.actions form button[name="buy_now"]:hover {
+.click form button[name="buy_now"]:hover {
     background-color: #c82333;
 }
 

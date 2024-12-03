@@ -1,0 +1,106 @@
+/* Tổng thể */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.boxcenter {
+    max-width: 800px;
+    margin: 20px auto;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    text-align: center;
+    color: #444;
+}
+
+h3 {
+    margin-top: 30px;
+    color: #555;
+}
+
+/* Thông tin đơn hàng */
+.boxcenter p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 10px 0;
+}
+
+a.button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+a.button:hover {
+    background-color: #0056b3;
+}
+
+/* Bảng sản phẩm */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Hình ảnh sản phẩm */
+table img {
+    border-radius: 5px;
+    width: 80px;
+    height: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .boxcenter {
+        padding: 15px;
+    }
+
+    table img {
+        width: 60px;
+    }
+
+    table th, table td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    a.button {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
