@@ -1,40 +1,35 @@
 <?php
-// admin/controller/BinhLuanController.php
 class BinhLuanController
 {
-    public $modelBinhLuan;
+    private $modelBinhLuan;
 
     public function __construct()
     {
         $this->modelBinhLuan = new Comment();
     }
+
+    /**
+     * Hiển thị danh sách bình luận.
+     */
     public function getAllBinhLuan()
     {
         $listBinhLuan = $this->modelBinhLuan->getAllBinhLuan();
-        // var_dump($listBinhLuan);die;
-        
-        
-        // Kiểm tra xem danh sách bình luận có phải là mảng không
-        if (is_array($listBinhLuan) && count($listBinhLuan) > 0) {
-            // Truyền dữ liệu đến view
-            require_once './view/binhluan/listBinhLuan.php';
-        } else {
-            // Nếu không có dữ liệu, truyền mảng rỗng vào view
-            $listBinhLuan = [];
-            require_once './view/binhluan/listBinhLuan.php';
-        }
+        require_once './view/binhluan/listBinhLuan.php';
     }
-    public function deleteBinhLuan($id)
-       
+
+    /**
+     * Xóa bình luận.
+     */
+    public function deleteBinhLuan()
     {
-        $id=$_GET['id_binh_luan='];
-        $result = $this->modelBinhLuan->deleteBinhLuan($id);
-        if ($result) {
-            // Xóa thành công, chuyển hướng về danh sách
-            header('location:'. BASE_URL_ADMIN .'?act=binh-luan');
+        $comment_id = $_POST['comment_id'] ?? null;
+
+        if ($comment_id && $this->modelBinhLuan->deleteBinhLuan($comment_id)) {
+            header('Location: ?act=binh-luan');
+            exit();
         } else {
-            // Xóa thất bại, hiển thị thông báo lỗi
             echo "Không thể xóa bình luận!";
         }
     }
 }
+?>

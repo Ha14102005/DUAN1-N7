@@ -194,26 +194,25 @@ class AuthController
         exit();
     }
     public function deleteKhachHang() {
-        // Lấy ID từ request
-        $id = $_GET['id'] ?? null;
-    
+        $id = $_GET['id'] ?? null; // Lấy ID từ query string
+        
         if (!$id) {
             $_SESSION['error'] = "Không tìm thấy tài khoản cần xóa.";
             header("Location: " . BASE_URL_ADMIN . "?act=list-tai-khoan-khach-hang");
             exit;
         }
-    
+        
         // Gọi model để xóa khách hàng
         $result = $this->modelAdmin->deleteKhachHangById($id);
-    
+        
         if ($result) {
             $_SESSION['success'] = "Xóa tài khoản thành công.";
         } else {
             $_SESSION['error'] = "Đã xảy ra lỗi khi xóa tài khoản.";
         }
-    
-        // Quay lại danh sách
+        
         header("Location: " . BASE_URL_ADMIN . "?act=list-tai-khoan-khach-hang");
         exit;
     }
+    
 }

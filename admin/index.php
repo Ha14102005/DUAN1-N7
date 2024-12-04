@@ -103,17 +103,17 @@ switch ($act) {
         (new AuthController())->deleteKhachHang();
         break;
         // Bình luận
-    case 'binh-luan':
-        (new BinhLuanController())->getAllBinhLuan();
-        break;
-        // xoa bl
-    case 'delete_binh_luan':
-        (new BinhLuanController())->deleteBinhLuan();
-        break;
+        case 'binh-luan':
+            (new BinhLuanController())->getAllBinhLuan();
+            break;
+        case 'delete-binh-luan':
+            (new BinhLuanController())->deleteBinhLuan();
+            break;
         // Default case
-    case '/':
-        (new AuthController())->formLogin();
-        break;
-    default:
-        throw new Exception("Invalid action: $act");
+        case '/':
+            (new AuthController())->formLogin();
+            break;
+        default:
+            throw new Exception("Invalid action: $act");
 }
+// Routing logic

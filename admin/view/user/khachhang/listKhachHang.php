@@ -54,12 +54,18 @@
                                                     <td> <?= htmlspecialchars($user['role'] ?? 'N/A') ?> </td>
                                                     <td>
                                                     <td>
-                                                        <a href="<?= BASE_URL_ADMIN . '?act=delete-khach-hang&id=' . $user['user_id '] ?>"
+                                                        <?php if (!empty($user['id'])) { ?>
+                                                            <a href="<?= BASE_URL_ADMIN . '?act=delete-khach-hang&id=' . htmlspecialchars($user['id']) ?>"
                                                             class="btn btn-danger"
                                                             onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này?');">
-                                                            <i class="fas fa-trash-alt"></i>
-                                                        </a>
+                                                                <i class="fas fa-trash-alt"></i> Xóa
+                                                            </a>
+                                                        <?php } else { ?>
+                                                            <span class="text-danger">ID không hợp lệ</span>
+                                                        <?php } ?>
                                                     </td>
+
+
                                                     </td>
                                                 </tr>
                                             <?php } ?>
