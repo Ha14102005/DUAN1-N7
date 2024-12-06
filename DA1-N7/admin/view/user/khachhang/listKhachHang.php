@@ -42,19 +42,30 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($listKhachHang as $key => $users) { ?>
+                                            <?php foreach ($listKhachHang as $key => $user) { ?>
                                                 <tr>
                                                     <td> <?= $key + 1 ?> </td>
-                                                    <td> <?= htmlspecialchars($users['username'] ?? 'N/A') ?> </td>
-                                                    <td> <?= htmlspecialchars($users['phone'] ?? 'N/A') ?> </td>
-                                                    <td> <?= htmlspecialchars($users['email'] ?? 'N/A') ?> </td>
+                                                    <td> <?= htmlspecialchars($user['username'] ?? 'N/A') ?> </td>
+                                                    <td> <?= htmlspecialchars($user['phone'] ?? 'N/A') ?> </td>
+                                                    <td> <?= htmlspecialchars($user['email'] ?? 'N/A') ?> </td>
                                                     <td>
-                                                        <?= isset($users['create_at']) ? ($users['create_at'] == 1 ? 'Active' : 'Inactive') : 'Inactive' ?>
+                                                        <?= isset($user['create_at']) ? ($user['create_at'] == 1 ? 'Active' : 'Inactive') : 'Inactive' ?>
                                                     </td>
-                                                    <td> <?= htmlspecialchars($users['role'] ?? 'N/A') ?> </td>
+                                                    <td> <?= htmlspecialchars($user['role'] ?? 'N/A') ?> </td>
                                                     <td>
-                                                       <i class="fas fa-trash-alt"></i>
-                                                        </a> <!-- Đảm bảo URL đúng -->
+                                                    <td>
+                                                        <?php if (!empty($user['id'])) { ?>
+                                                            <a href="<?= BASE_URL_ADMIN . '?act=delete-khach-hang&id=' . htmlspecialchars($user['id']) ?>"
+                                                            class="btn btn-danger"
+                                                            onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này?');">
+                                                                <i class="fas fa-trash-alt"></i> Xóa
+                                                            </a>
+                                                        <?php } else { ?>
+                                                            <span class="text-danger">ID không hợp lệ</span>
+                                                        <?php } ?>
+                                                    </td>
+
+
                                                     </td>
                                                 </tr>
                                             <?php } ?>

@@ -30,10 +30,6 @@
         $sql = "SELECT * FROM product";
     }
     $products = $conn->query($sql);
-
-    // Lấy danh sách sản phẩm mới nhất (5 sản phẩm)
-    $top_sql = "SELECT * FROM product ORDER BY created_date DESC LIMIT 5";
-    $top_products = $conn->query($top_sql);
     ?>
 
     <div class="boxcenter">

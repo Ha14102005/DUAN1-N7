@@ -86,7 +86,18 @@ class Admin
             return false;
         }
     }
-
+    public function deleteKhachHangById($id) {
+        try {
+            $sql = "DELETE FROM users WHERE id = :id AND role = 'user'"; // Xóa tài khoản có role 'user'
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (Exception $e) {
+            echo "Lỗi: " . $e->getMessage();
+            return false;
+        }
+    }
+    
    
 }
 

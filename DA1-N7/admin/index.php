@@ -63,14 +63,14 @@ match ($act) {
     'sua-quan-tri' => (new AuthController())->postEditQuanTri($id),
     'list-tai-khoan-khach-hang' => (new AuthController())->danhSachKhachHang(),
 
-    // Login and logout
-    'login-admin' => (new AuthController())->formLogin(),
-    'check-login-admin' => (new AuthController())->login(),
-    'logout-admin' => (new AuthController())->logout(),
-
-    'binh-luan'=>(new BinhLuanController())->getAllBinhLuan(),
-    // xoa bl
-        'delete_binh_luan' => (new BinhLuanController())->deleteBinhLuan(),
+          // Login and logout
+    'login-admin'=>(new AuthController())->formLogin(),
+    'check-login-admin'=> (new AuthController())->login(),     
+    'logout-admin'=> (new AuthController())->logout(),     
+    'delete-khach-hang'=> (new AuthController())->deleteKhachHang(),     
+            // Bình luận
+    'binh-luan'=> (new CommentController())->getAllComment(),         
+    'delete-binh-luan'=> (new CommentController())->deleteComment(),         
     // Default case
     '/' => (new AuthController())->formLogin(),
     default => throw new Exception("Invalid action: $act"), // Handles undefined actions
