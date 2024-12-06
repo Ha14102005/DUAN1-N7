@@ -14,7 +14,7 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <h1>Danh sách tài khoản khách hàng</h1> <!-- Cập nhật tiêu đề -->
+                            <h1>Danh sách tài khoản khách hàng</h1>
                         </div>
                     </div>
                 </div><!-- /.container-fluid -->
@@ -26,8 +26,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <div class="card-header">
-                                </div>
+                                <div class="card-header"></div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <table id="example2" class="table table-bordered table-hover">
@@ -37,37 +36,43 @@
                                                 <th>Tên</th>
                                                 <th>Phone</th>
                                                 <th>Email</th>
-                                                <th>Trạng Thái</th>
+                                                <th>Ngày tạo</th>
                                                 <th>Chức vụ</th>
+                                                <th>Hành động</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($listKhachHang as $key => $user) { ?>
+                                            <?php if (empty($listKhachHang)) { ?>
                                                 <tr>
-                                                    <td> <?= $key + 1 ?> </td>
-                                                    <td> <?= htmlspecialchars($user['username'] ?? 'N/A') ?> </td>
-                                                    <td> <?= htmlspecialchars($user['phone'] ?? 'N/A') ?> </td>
-                                                    <td> <?= htmlspecialchars($user['email'] ?? 'N/A') ?> </td>
-                                                    <td>
-                                                        <?= isset($user['create_at']) ? ($user['create_at'] == 1 ? 'Active' : 'Inactive') : 'Inactive' ?>
-                                                    </td>
-                                                    <td> <?= htmlspecialchars($user['role'] ?? 'N/A') ?> </td>
-                                                    <td>
-                                                    <td>
-                                                        <?php if (!empty($user['id'])) { ?>
-                                                            <a href="<?= BASE_URL_ADMIN . '?act=delete-khach-hang&id=' . htmlspecialchars($user['id']) ?>"
-                                                            class="btn btn-danger"
-                                                            onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này?');">
+                                                    <td colspan="7" class="text-center">Không có tài khoản khách hàng nào!</td>
+                                                </tr>
+                                            <?php } else { ?>
+                                                <?php foreach ($listKhachHang as $key => $user) { ?>
+                                                    <tr>
+                                                        <td><?= $key + 1 ?></td>
+                                                        <td><?= htmlspecialchars($user['username'] ?? 'N/A') ?></td>
+                                                        <td><?= htmlspecialchars($user['phone'] ?? 'N/A') ?></td>
+                                                        <td><?= htmlspecialchars($user['email'] ?? 'N/A') ?></td>
+                                                        <td>
+                                                            <?php
+                                                            // Kiểm tra nếu cột 'created_at' tồn tại và hiển thị ngày tạo
+                                                            if (isset($user['created_at']) && !empty($user['created_at'])) {
+                                                                echo date('d/m/Y', strtotime($user['created_at'])); // Hiển thị ngày tạo theo định dạng dd/mm/yyyy
+                                                            } else {
+                                                                echo 'N/A'; // Nếu không có ngày tạo, hiển thị N/A
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td><?= htmlspecialchars($user['role'] ?? 'N/A') ?></td>
+                                                        <td>
+                                                            <a href="<?= BASE_URL_ADMIN . '?act=delete-khach-hang&id=' . htmlspecialchars($user['user_id']) ?>"
+                                                               class="btn btn-danger"
+                                                               onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản này?');">
                                                                 <i class="fas fa-trash-alt"></i> Xóa
                                                             </a>
-                                                        <?php } else { ?>
-                                                            <span class="text-danger">ID không hợp lệ</span>
-                                                        <?php } ?>
-                                                    </td>
-
-
-                                                    </td>
-                                                </tr>
+                                                        </td>
+                                                    </tr>
+                                                <?php } ?>
                                             <?php } ?>
                                         </tbody>
                                     </table>

@@ -6,99 +6,81 @@ class Admin
 
     public function __construct()
     {
-        $this->conn = connectDB();
+        $this->conn = connectDB(); // Kết nối đến CSDL
     }
 
-    public function getAllTaiKhoan()
+    // Lấy tất cả tài khoản theo loại (admin hoặc user)
+    public function getAllTaiKhoan($role)
     {
-        $sql = "SELECT * FROM users WHERE role = 'admin'"; // Truy vấn lấy tất cả tài khoản admin
+        $sql = "SELECT * FROM users WHERE role = :role";
         $stmt = $this->conn->prepare($sql);
+        $stmt->bindParam(':role', $role, PDO::PARAM_STR);
         $stmt->execute();
-        return $stmt->fetchAll(); // Trả về danh sách tài khoản quản trị viên
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Trả về danh sách tài khoản
     }
 
-    // Trong model Admin.php hoặc model tương ứng của bạn
-    public function getAllTaiKhoanKhachHang() {
-        $sql = "SELECT * FROM users WHERE role = 'user'"; // Giả sử 'role' là cột xác định quyền của người dùng
-        $stmt = $this->conn->prepare($sql);
-        $stmt->execute();
-        return $stmt->fetchAll(PDO::FETCH_ASSOC); // Trả về danh sách khách hàng dưới dạng mảng
-    }
-
-    public function insertuser($username,$email,$phone,$password,$role_id) {
+    // Thêm tài khoản vào CSDL
+    public function insertuser($username, $email, $phone, $password, $role)
+    {
         try {
-            $sql = 'INSERT INTO `users` (`username,email,phone,password,role_id`) 
-                    VALUES (`:username,:email,:phone,:password,:role_id`)';
-
-            $stmt=$this->conn->prepare($sql);
-
-            $stmt->execute(
-                [
-                    ':username'=>$username,
-                    ':email'=>$email,
-                    ':phone' =>$phone,
-                    ':password'=>$password,
-                    ':role_id'=>$role_id
-                ]
-            );
+            $sql = "INSERT INTO users (username, email, phone, password, role, created_at)
+                    VALUES (:username, :email, :phone, :password, :role, NOW())";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->execute([
+                ':username' => $username,
+                ':email' => $email,
+                ':phone' => $phone,
+                ':password' => $password,
+                ':role' => $role
+            ]);
             return true;
         } catch (Exception $e) {
-            echo 'lỗi' .$e->getMessage();
-        }
-    }
-    public function getDetailTaiKhoan($id) {
-        try {
-            $sql = 'SELECT * FROM users WHERE id =:id';
-
-            $stmt=$this->conn->prepare($sql);
-
-            $stmt->execute(
-                [
-                    ':id'=>$id
-                ]
-            );
-            return $stmt->fetch();
-        } catch (Exception $e) {
-            echo 'lỗi' .$e->getMessage();
-        }
-    }
-    public function checkLogin($email, $password) {
-        try {
-            $sql = 'SELECT * FROM users WHERE email = :email';
-            $stmt = $this->conn->prepare($sql);
-            $stmt->execute([':email' => $email]); // Dùng ':email'
-            $users = $stmt ->fetch();
-            if ($users && password_verify($password , $users['password'])){
-                if($users['role_id']==1){
-                    if($users['created_at']== 1){
-                        return $users['email'];
-                }else{
-                    return "Tai khoan bi cam";
-                } 
-        }else{
-            return "Tai khoan khong co quyen dang nhap";
-        }
-    }else{
-        return "Loi khi dang nhap";
-    }
-        }catch (\Throwable $e) {
-            echo "loi". $e->getMessage();
+            echo 'Lỗi: ' . $e->getMessage();
             return false;
         }
     }
-    public function deleteKhachHangById($id) {
+
+    // Lấy thông tin tài khoản theo ID
+    public function getDetailTaiKhoan($id)
+    {
         try {
-            $sql = "DELETE FROM users WHERE id = :id AND role = 'user'"; // Xóa tài khoản có role 'user'
+            $sql = "SELECT * FROM users WHERE user_id = :id";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch();
+        } catch (Exception $e) {
+            echo 'Lỗi: ' . $e->getMessage();
+            return false;
+        }
+    }
+
+    // Xóa tài khoản khách hàng theo ID
+    public function deleteKhachHangById($id)
+    {
+        try {
+            $sql = "DELETE FROM users WHERE user_id = :id AND role = 'user'";
             $stmt = $this->conn->prepare($sql);
             $stmt->bindParam(':id', $id, PDO::PARAM_INT);
             return $stmt->execute();
         } catch (Exception $e) {
-            echo "Lỗi: " . $e->getMessage();
+            echo 'Lỗi: ' . $e->getMessage();
             return false;
         }
     }
-    
-   
-}
 
-    
+    // Xóa tài khoản quản trị viên theo ID
+    public function deleteQuanTriById($id)
+    {
+        try {
+            $sql = "DELETE FROM users WHERE user_id = :id AND role = 'admin'";
+            $stmt = $this->conn->prepare($sql);
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            return $stmt->execute();
+        } catch (Exception $e) {
+            echo 'Lỗi: ' . $e->getMessage();
+            return false;
+        }
+    }
+}
+?>

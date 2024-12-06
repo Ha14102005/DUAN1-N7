@@ -59,15 +59,15 @@ match ($act) {
     'list-tai-khoan-quan-tri' => (new AuthController())->danhSachQuanTri(),
     'form-them-quan-tri' => (new AuthController())->formAddQuanTri(),
     'add-user' => (new AuthController())->postAddQuanTri(), // Fixed routing for add-user
-    'form-sua-quan-tri' => (new AuthController())->formEditQuanTri($id),
-    'sua-quan-tri' => (new AuthController())->postEditQuanTri($id),
+    'form-sua-quan-tri' => (new AdminController())->formEditQuanTri($id),
+    'sua-quan-tri' => (new AdminController())->postEditQuanTri($id),
     'list-tai-khoan-khach-hang' => (new AuthController())->danhSachKhachHang(),
 
           // Login and logout
     'login-admin'=>(new AuthController())->formLogin(),
     'check-login-admin'=> (new AuthController())->login(),     
     'logout-admin'=> (new AuthController())->logout(),     
-    'delete-khach-hang'=> (new AuthController())->deleteKhachHang(),     
+    'delete-khach-hang'=> (new AdminController())->deleteKhachHang(),     
             // Bình luận
     'binh-luan'=> (new CommentController())->getAllComment(),         
     'delete-binh-luan'=> (new CommentController())->deleteComment(),         
