@@ -208,7 +208,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <label for="payment_method_id">Phương thức thanh toán:</label>
             <select name="payment_method_id" id="payment_method_id" required>
                 <option value="1">Thanh toán khi nhận hàng</option>
-                <option value="2">Thanh toán online</option>
             </select>
 
             <button type="submit" name="confirm_order">Xác nhận đặt hàng</button>

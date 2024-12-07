@@ -34,6 +34,7 @@ if (isset($_GET['id'])) {
 }
 
 // Lấy bình luận cho sản phẩm
+//Truy vấn lấy danh sách bình luận từ bảng comments liên kết với bảng users 
 $sql_comments = "
     SELECT 
         c.content, 
@@ -108,10 +109,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['comment_content'])) {
                 <p><strong>Ngày nhập kho:</strong> <?php echo date("d/m/Y", strtotime($product['created_date'])); ?></p>
             </div>
             <div class="click">
+            <!-- Gửi product_id đến file cart.php. -->
                 <form action="cart.php" method="post" style="display:inline-block;">
                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                     <button type="submit" name="add_to_cart">Thêm vào giỏ hàng</button>
                 </form>
+                <!-- product_id đến file buynow.php. -->
                 <form action="buynow.php" method="post" style="display:inline-block;">
                     <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                     <button type="submit" name="buy_now">Mua ngay</button>

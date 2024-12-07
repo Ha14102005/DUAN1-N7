@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['product_id'])) {
         $stmt->execute();
         $order_id = $stmt->insert_id;
 
-        // Lưu chi tiết đơn hàng vào bảng order_items
+        // Lưu chi tiết đơn hàng vào bảng order_items.Lệnh thêm và liệt kê
         $order_item_sql = "INSERT INTO order_items (order_id, product_id, quantity, price)
                            VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($order_item_sql);

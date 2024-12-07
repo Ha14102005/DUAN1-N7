@@ -43,8 +43,8 @@
             <?php
             // Tìm kiếm sản phẩm
             if (isset($_GET['query'])) {
-                $query = $_GET['query'];
-                $sql = "SELECT * FROM product WHERE name LIKE '%$query%'";
+                $query = $_GET['query'];//Lưu trữ gtri
+                $sql = "SELECT * FROM product WHERE name LIKE '%$query%'";//Tìm các sản phẩm mà tên (name) chứa từ khóa $query
                 $products = $conn->query($sql);
             }
             ?>
@@ -99,6 +99,7 @@
             <div class="boxleft mr">
                 <div class="row mb search-results">
                     <?php
+                    //Kiểm tra số lượng hàng (records) trong kết quả truy vấn
                     if ($products->num_rows > 0) {
                         while ($product = $products->fetch_assoc()) {
                     ?>
@@ -109,6 +110,7 @@
                                 </a>
                                 <p> <?php echo number_format($product['price'], 0, ',', '.'); ?> VNĐ</p>
                                 <div>
+                                <!-- POST tới file cart.php. truyền product_id của sản phẩm. -->
                                     <form action="client/cart.php" method="post" style="display:inline-block;">
                                         <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
                                         <button type="submit" name="add_to_cart">Thêm vào giỏ hàng</button>

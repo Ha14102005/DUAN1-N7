@@ -20,7 +20,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Xử lý thêm sản phẩm vào giỏ hàng
+// Khi người dùng gửi form thêm sản phẩm, mã kiểm tra sự kiện add_to_cart.
 if (isset($_POST['add_to_cart'])) {
     $product_id = $_POST['product_id'];
     $quantity = 1;
@@ -31,7 +31,7 @@ if (isset($_POST['add_to_cart'])) {
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $cart_result = $stmt->get_result();
-
+    //Nếu giỏ hàng chưa tồn tại, tạo một giỏ hàng mới và lưu lại cart_id.
     if ($cart_result->num_rows > 0) {
         $cart = $cart_result->fetch_assoc();
         $cart_id = $cart['cart_id'];
@@ -49,7 +49,7 @@ if (isset($_POST['add_to_cart'])) {
     $stmt->bind_param("ii", $cart_id, $product_id);
     $stmt->execute();
     $cart_item_result = $stmt->get_result();
-
+    //Nếu sản phẩm đã tồn tại:
     if ($cart_item_result->num_rows > 0) {
         $cart_item_update = "UPDATE cart_item SET quantity = quantity + 1 WHERE cart_id = ? AND product_id = ?";
         $stmt = $conn->prepare($cart_item_update);
@@ -81,7 +81,7 @@ if (isset($_POST['update_quantity'])) {
     } elseif ($action === 'decrease') {
         $update_query = "UPDATE cart_item SET quantity = GREATEST(quantity - 1, 1) WHERE id = ?";
     }
-
+       //GREATEST(quantity - 1, 1): Đảm bảo số lượng không nhỏ hơn 1.
     if (isset($update_query)) { // Kiểm tra xem $update_query có được gán hay không
         $stmt = $conn->prepare($update_query);
         $stmt->bind_param("i", $cart_item_id);

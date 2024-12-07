@@ -64,7 +64,6 @@ $order_items_result = $stmt_items->get_result();
     <title>Chi tiết đơn hàng</title>
     <link rel="stylesheet" href="../style/style_orderdetail.css">
 </head>
-
 <body>
     <div class="boxcenter">
         <h2>Chi tiết đơn hàng: <?php echo htmlspecialchars($order['order_code']); ?></h2>
