@@ -55,7 +55,7 @@ if (isset($_POST['add_to_cart'])) {
         $stmt = $conn->prepare($cart_item_update);
         $stmt->bind_param("ii", $cart_id, $product_id);
         $stmt->execute();
-    } else {
+    } else {//Nếu sản phẩm dã tồn tại
         $price_query = "SELECT price FROM product WHERE id = ?";
         $stmt = $conn->prepare($price_query);
         $stmt->bind_param("i", $product_id);
