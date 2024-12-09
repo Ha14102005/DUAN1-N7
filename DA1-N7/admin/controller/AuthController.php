@@ -48,6 +48,52 @@ class AuthController
             exit();
         }
     }
+    // Display the login form
+    public function formLogin()
+    {
+        require_once './view/auth/formLogin.php';
+    }
+
+    // Handle login
+    public function login()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $email = $_POST['email'] ?? '';
+            $password = $_POST['password'] ?? '';
+
+            // Validate input
+            if (empty($email) || empty($password)) {
+                $_SESSION["error"] = "Email and password are required!";
+                header("Location: " . BASE_URL_ADMIN . "?act=login-admin");
+                exit();
+            }
+
+            // Check login credentials
+            $user = $this->modelAdmin->checkLogin($email, $password);
+
+            if ($user) {
+                // Successful login
+                $_SESSION['user_admin'] = $user;
+                header("Location: " . BASE_URL_ADMIN);
+                exit();
+            } else {
+                // Login failed
+                $_SESSION["error"] = "Invalid email or password!";
+                header("Location: " . BASE_URL_ADMIN . "?act=login-admin");
+                exit();
+            }
+        }
+    }
+
+    // Handle logout
+    public function logout()
+    {
+        if (isset($_SESSION["user_admin"])) {
+            unset($_SESSION["user_admin"]);
+        }
+        header("Location: " . BASE_URL_ADMIN . '?act=login-admin');
+        exit();
+    }
 
     // Xóa tài khoản khách hàng
     public function deleteKhachHang()

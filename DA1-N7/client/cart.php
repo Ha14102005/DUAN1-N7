@@ -142,6 +142,7 @@ $cart_items = $stmt->get_result();
                 <tbody>
                     <?php
                     $total = 0;
+                    //Duyệt qua tất cả các mục trong giỏ hàng
                     while ($cart_item = $cart_items->fetch_assoc()) {
                         $subtotal = $cart_item['price'] * $cart_item['quantity'];
                         $total += $subtotal;

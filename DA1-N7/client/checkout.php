@@ -83,7 +83,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $error = "Lỗi khi tạo đơn hàng: " . $stmt->error;
             } else {
                 $order_id = $stmt->insert_id;
-
                 // Thêm chi tiết sản phẩm vào `order_items`
                 $order_item_query = "
                  INSERT INTO order_items (order_id, product_id, quantity, price) 
